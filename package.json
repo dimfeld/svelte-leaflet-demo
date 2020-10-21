@@ -1,0 +1,25 @@
+{
+  "name": "svelte-leaflet-demo",
+  "version": "1.0.0",
+  "description": "Visualize Migrations in the US with Svelte and Leaflet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimfeld/svelte-leaflet-demo.git"
+  },
+  "author": "Daniel Imfeld <dimfeld>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dimfeld/svelte-leaflet-demo/issues"
+  },
+  "homepage": "https://github.com/dimfeld/svelte-leaflet-demo#readme",
+  "dependencies": {
+    "@turf/turf": "^5.1.6",
+    "d3-dsv": "^2.0.0",
+    "topojson-client": "^3.1.0",
+    "topojson-server": "^3.0.1"
+  }
+}
