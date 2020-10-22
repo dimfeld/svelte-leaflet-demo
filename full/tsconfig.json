@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "es2020",
+    "noEmit": true,
+    "strict": true,
+    "lib": ["dom", "es5", "ES2015", "es2016", "es2017", "es2018", "ES2019"]
+  },
+  "paths": {
+    "^/*": ["src/*"]
+  },
+  "include": ["src"],
+  "compileOnSave": false
+}
