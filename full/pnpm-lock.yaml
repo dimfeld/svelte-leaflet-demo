@@ -1,4 +1,6 @@
 dependencies:
+  d3-scale: 3.2.3
+  just-flush: 1.1.0
   leaflet: 1.7.1
   sirv-cli: 0.4.6
 devDependencies:
@@ -16,6 +18,7 @@ devDependencies:
   '@rollup/plugin-babel': 5.2.1_@babel+core@7.12.3+rollup@2.32.1
   '@rollup/plugin-commonjs': 15.1.0_rollup@2.32.1
   '@rollup/plugin-html': 0.2.0_rollup@2.32.1
+  '@rollup/plugin-json': 4.1.0_rollup@2.32.1
   '@rollup/plugin-node-resolve': 8.4.0_rollup@2.32.1
   '@rollup/plugin-replace': 2.3.3_rollup@2.32.1
   '@tailwindcss/ui': 0.6.2_tailwindcss@1.9.5
@@ -46,7 +49,7 @@ devDependencies:
   svelte-preprocess: 4.5.1_c630248e589337c11fbf9dd1164d9070
   tailwindcss: 1.9.5
   typescript: 4.0.3
-lockfileVersion: 5.1
+lockfileVersion: 5.2
 packages:
   /@babel/code-frame/7.10.4:
     dependencies:
@@ -1113,6 +1116,15 @@ packages:
       rollup: ^1.20.0||^2.0.0
     resolution:
       integrity: sha512-aT73feaTUmJIQ45K61+5pL9GE5IYgHi0SvQ+yhQfPG1HoDlPnIjk3af9IA/DxJ+8ZlWDWFcN3pik0VavWF88hw==
+  /@rollup/plugin-json/4.1.0_rollup@2.32.1:
+    dependencies:
+      '@rollup/pluginutils': 3.1.0_rollup@2.32.1
+      rollup: 2.32.1
+    dev: true
+    peerDependencies:
+      rollup: ^1.20.0 || ^2.0.0
+    resolution:
+      integrity: sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==
   /@rollup/plugin-node-resolve/8.4.0_rollup@2.32.1:
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.32.1
@@ -2143,6 +2155,44 @@ packages:
       node: '>=8.0.0'
     resolution:
       integrity: sha512-NL3spysxUkcrOgnpsT4Xdl2aiEiBG6bXswAABQVHcMrfjjBisFOKwLDOmf4wf32aPdcJws1zds2B0Rg+jqMyHQ==
+  /d3-array/2.8.0:
+    dev: false
+    resolution:
+      integrity: sha512-6V272gsOeg7+9pTW1jSYOR1QE37g95I3my1hBmY+vOUNHRrk9yt4OTz/gK7PMkVAVDrYYq4mq3grTiZ8iJdNIw==
+  /d3-color/2.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-SPXi0TSKPD4g9tw0NMZFnR95XVgUZiBH+uUTqQuDu1OsE2zomHU7ho0FISciaPvosimixwHFl3WHLGabv6dDgQ==
+  /d3-format/2.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-Ab3S6XuE/Q+flY96HXT0jOXcM4EAClYFnRGY5zsjRGNy6qCYrQsMffs7cV5Q9xejb35zxW5hf/guKw34kvIKsA==
+  /d3-interpolate/2.0.1:
+    dependencies:
+      d3-color: 2.0.0
+    dev: false
+    resolution:
+      integrity: sha512-c5UhwwTs/yybcmTpAVqwSFl6vrQ8JZJoT5F7xNFK9pymv5C0Ymcc9/LIJHtYIggg/yS9YHw8i8O8tgb9pupjeQ==
+  /d3-scale/3.2.3:
+    dependencies:
+      d3-array: 2.8.0
+      d3-format: 2.0.0
+      d3-interpolate: 2.0.1
+      d3-time: 2.0.0
+      d3-time-format: 3.0.0
+    dev: false
+    resolution:
+      integrity: sha512-8E37oWEmEzj57bHcnjPVOBS3n4jqakOeuv1EDdQSiSrYnMCBdMd3nc4HtKk7uia8DUHcY/CGuJ42xxgtEYrX0g==
+  /d3-time-format/3.0.0:
+    dependencies:
+      d3-time: 2.0.0
+    dev: false
+    resolution:
+      integrity: sha512-UXJh6EKsHBTjopVqZBhFysQcoXSv/5yLONZvkQ5Kk3qbwiUYkdX17Xa1PT6U1ZWXGGfB1ey5L8dKMlFq2DO0Ag==
+  /d3-time/2.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-2mvhstTFcMvwStWd9Tj3e6CEqtOivtD8AUiHT8ido/xmzrI9ijrUUihZ6nHuf/vsScRBonagOdj0Vv+SEL5G3Q==
   /debug/2.6.9:
     dependencies:
       ms: 2.0.0
@@ -3512,6 +3562,10 @@ packages:
       graceful-fs: 4.2.4
     resolution:
       integrity: sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=
+  /just-flush/1.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-NY3rXwXBNR/8KCV1xU6FfFWLlNty3U0RpEMpt2rPQlEQfNi8UmDzh1W9obIWWBfV6JrnjrSPVXOTyfxlTqx9hA==
   /kind-of/3.2.2:
     dependencies:
       is-buffer: 1.1.6
@@ -6010,6 +6064,7 @@ specifiers:
   '@rollup/plugin-babel': ^5.0.3
   '@rollup/plugin-commonjs': ^15.0.0
   '@rollup/plugin-html': ^0.2.0
+  '@rollup/plugin-json': ^4.1.0
   '@rollup/plugin-node-resolve': ^8.1.0
   '@rollup/plugin-replace': ^2.3.3
   '@tailwindcss/ui': ^0.6.2
@@ -6019,9 +6074,11 @@ specifiers:
   autoprefixer: ^9
   babel-eslint: ^10.0.3
   cssnano: ^4.1.10
+  d3-scale: ^3.2.3
   eslint: ^6.8.0
   eslint-config-prettier: ^6.10.1
   eslint-plugin-svelte3: ^2.7.3
+  just-flush: ^1.1.0
   leaflet: ^1.7.1
   lodash.template: ^4.5.0
   npm-run-all: ^4.1.5

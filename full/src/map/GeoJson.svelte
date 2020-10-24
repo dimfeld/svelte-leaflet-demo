@@ -1,40 +1,53 @@
 <script lang="typescript">
   import * as L from 'leaflet';
-  import type { SvelteComponent } from 'svelte';
-  import { onMount, createEventDispatcher } from 'svelte';
-  import { bindPopup } from './popup';
+  import flush from 'just-flush';
+  import type { Readable } from 'svelte/store';
+  import { writable } from 'svelte/store';
+  import {
+    getContext,
+    setContext,
+    onDestroy,
+    createEventDispatcher,
+  } from 'svelte';
 
   const dispatch = createEventDispatcher();
 
-  export let map;
-  export let geojson;
-  export let fill;
+  export let geojson: any;
+  export let color: string;
+  export let fillColor: string | undefined = undefined;
+  export let fillOpacity: number | undefined = undefined;
+  export let weight: number | undefined = undefined;
 
-  export let popup: string | typeof SvelteComponent | undefined = undefined;
-  export let popupProps: object | undefined = undefined;
+  export let layer: L.GeoJSON | null = null;
 
-  let layer: L.GeoJSON;
-  onMount(() => {
-    let layer = L.geoJSON(geojson, {
+  const container: Readable<L.LayerGroup> = getContext('layerGroup');
+  let layerStore = writable<L.GeoJSON | null>(layer);
+  setContext('layer', layerStore);
+
+  $: layerStyle = flush({ color, fillColor, fillOpacity, weight });
+
+  $: if ($container && !layer) {
+    layer = L.geoJSON(geojson, {
       style: function (feature) {
-        return { color: fill };
+        return layerStyle;
       },
-    });
+    })
+      .on('mouseover', (e) => dispatch('mouseover', e))
+      .on('mouseout', (e) => dispatch('mouseout', e))
+      .on('click', (e) => dispatch('click', e));
 
-    bindPopup(layer, popup, popupProps);
-    layer.addTo(map);
+    layerStore.set(layer);
+    layer.addTo($container);
+  }
 
-    layer.on('mouseover', (e) => dispatch('mouseover', e));
-    layer.on('mouseout', (e) => dispatch('mouseout', e));
-    layer.on('click', (e) => dispatch('click', e));
-
-    return () => {
+  onDestroy(() => {
+    if (layer) {
       layer.remove();
       layer = null;
-    };
+    }
   });
 
-  $: if (layer) {
-    layer.setStyle({ color: fill });
-  }
+  $: layer?.setStyle(layerStyle);
 </script>
+
+<slot />

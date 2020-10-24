@@ -50,11 +50,15 @@ for(let feature of geojson.features) {
     });
 }
 
-let flows = [];
+let flowMap = new Map();
 let missingGeo = new Set();
 
 for(let {source, destination, flow} of metroData) {
-    flows.push([source.id, destination.id, flow]);
+    let reverse = destination.id < source.id;
+    let flowKey = reverse ? `${destination.id}:${source.id}` : `${source.id}:${destination.id}`;
+    let flowAmount = reverse ? -flow : flow;
+
+    flowMap.set(flowKey, (flowMap.get(flowKey) || 0) + flowAmount);
 
     let sourceData = msaData.get(source.id);
     if(!sourceData) {
@@ -73,6 +77,10 @@ for(let {source, destination, flow} of metroData) {
     }
 }
 
+let flows = Array.from(flowMap.entries(), ([key, count]) => {
+    return [...key.split(':'), count];
+});
+
 // Just a sanity check to make sure we're including everything relevant.
 // console.log(Array.from(missingGeo));
 
@@ -86,7 +94,7 @@ let outputGeojson = {
 
 
 console.log(`Saving ${msaOutput.length} MSAs`);
-fs.writeFileSync('flows.tsv', dsv.tsvFormatRows([['source', 'destination', 'count']].concat(flows)));
+fs.writeFileSync('flows.json', JSON.stringify(flows));
 fs.writeFileSync('msas.json', JSON.stringify(msaOutput));
 
 // A lot of the MSAs in the topojson don't show up in the data, so regenerate the topojson with only

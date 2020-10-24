@@ -13,6 +13,8 @@
     "start:dev": "NODE_ENV=development sirv public --single --dev -H 0.0.0.0"
   },
   "dependencies": {
+    "d3-scale": "^3.2.3",
+    "just-flush": "^1.1.0",
     "leaflet": "^1.7.1",
     "sirv-cli": "^0.4.4"
   },
@@ -31,6 +33,7 @@
     "@rollup/plugin-babel": "^5.0.3",
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-html": "^0.2.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^8.1.0",
     "@rollup/plugin-replace": "^2.3.3",
     "@tailwindcss/ui": "^0.6.2",

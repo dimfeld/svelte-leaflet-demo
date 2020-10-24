@@ -8,6 +8,7 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import babel from '@rollup/plugin-babel';
+import json from '@rollup/plugin-json';
 import html, { makeHtmlAttributes } from '@rollup/plugin-html';
 import copy from 'rollup-plugin-copy';
 
@@ -68,6 +69,7 @@ export default {
     }),
     commonjs(),
     babel(babelConfig),
+    json(),
 
     replace({
       'process.env.NODE_ENV': JSON.stringify(
