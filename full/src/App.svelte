@@ -153,6 +153,7 @@
   ];
 
   $: hasLines = new Set(lines.flatMap((l) => l.id.split(':')));
+  let showLines = true;
 </script>
 
 <style>
@@ -174,7 +175,7 @@
     <!-- Show the map only once the window has loaded, so that Leaflet gets the sizing right. -->
     {#if loaded || document.readyState === 'complete'}
       <Leaflet bind:map bounds={initialBounds}>
-        <MapControls {initialBounds} {msas} {infoMsa} />
+        <MapControls {initialBounds} {msas} {infoMsa} bind:showLines />
         {#each activeMsas as msa (msa.id)}
           <GeoJson
             geojson={msa.feature}
@@ -194,12 +195,14 @@
             }} />
         {/each}
 
-        {#each lines as line}
-          <PolyLine
-            latLngs={line.latLngs}
-            color={line.color}
-            dashArray="8 10" />
-        {/each}
+        {#if showLines}
+          {#each lines as line}
+            <PolyLine
+              latLngs={line.latLngs}
+              color={line.color}
+              dashArray="8 10" />
+          {/each}
+        {/if}
       </Leaflet>
     {/if}
   </div>
