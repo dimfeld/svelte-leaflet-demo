@@ -1,9 +1,11 @@
 <script lang="typescript">
   import * as L from 'leaflet';
+  import type { Msa, Flow } from './types';
   import Leaflet from './map/Leaflet.svelte';
   import GeoJson from './map/GeoJson.svelte';
   import PolyLine from './map/PolyLine.svelte';
   import Tooltip from './map/Tooltip.svelte';
+  import MapControls from './MapControls.svelte';
   import * as topojson from 'topojson-client';
   import { scaleSqrt } from 'd3-scale';
 
@@ -24,25 +26,6 @@
   let geojsons = new Map();
   for (let g of features.features) {
     geojsons.set(g.properties.CBSAFP, g);
-  }
-
-  interface Flow {
-    id: string;
-    count: number;
-  }
-
-  interface Msa {
-    id: string;
-    name: string;
-    net: number;
-    centroid: [lng: number, lat: number];
-    totalIncoming: number;
-    totalOutgoing: number;
-    netAsPercent: number;
-    population: number;
-    feature: any;
-    outgoing: Flow[];
-    incoming: Flow[];
   }
 
   let msas = new Map<string, Msa>();
@@ -121,7 +104,12 @@
 
   const initialBounds = L.latLngBounds([24, -126], [50, -66]);
 
-  let hoverMsa: Msa;
+  let clickMsa: Msa;
+  let hoverMsa: Msa | undefined;
+
+  let hoveringInList = false;
+  $: infoMsa = hoverMsa || clickMsa;
+  $: listMsa = hoveringInList ? clickMsa : infoMsa;
 
   let loaded = false;
 
@@ -131,33 +119,38 @@
     color: string;
   }
 
-  let lines: Line[] = [];
-  $: if (hoverMsa) {
-    let hoverCentroidLatLng = [hoverMsa.centroid[1], hoverMsa.centroid[0]];
+  function linesForMsa(msa: Msa): Line[] {
+    if (!msa) {
+      return [];
+    }
 
-    let incomingLines = hoverMsa.incoming.slice(0, 10).map((flow) => {
+    let centroidLatLng = [msa.centroid[1], msa.centroid[0]];
+
+    let incomingLines = msa.incoming.slice(0, 10).map((flow) => {
       let source = msas.get(flow.id)!;
       return {
-        id: `${hoverMsa.id}:${source.id}`,
-        latLngs: [
-          [source.centroid[1], source.centroid[0]],
-          hoverCentroidLatLng,
-        ],
+        id: `${msa.id}:${source.id}`,
+        latLngs: [[source.centroid[1], source.centroid[0]], centroidLatLng],
         color: 'orange',
       };
     });
 
-    let outgoingLines = hoverMsa.outgoing.slice(0, 10).map((flow) => {
+    let outgoingLines = msa.outgoing.slice(0, 10).map((flow) => {
       let dest = msas.get(flow.id)!;
       return {
-        id: `${dest.id}:${hoverMsa.id}`,
-        latLngs: [hoverCentroidLatLng, [dest.centroid[1], dest.centroid[0]]],
+        id: `${dest.id}:${msa.id}`,
+        latLngs: [centroidLatLng, [dest.centroid[1], dest.centroid[0]]],
         color: 'blue',
       };
     });
 
-    lines = [...incomingLines, ...outgoingLines];
+    return [...incomingLines, ...outgoingLines];
   }
+
+  $: lines = [
+    ...linesForMsa(clickMsa),
+    ...(hoverMsa && hoverMsa !== clickMsa ? linesForMsa(hoverMsa) : []),
+  ];
 </script>
 
 <style>
@@ -170,38 +163,32 @@
   }
 </style>
 
-<!-- Show the map only once the window has loaded, so that Leaflet gets the sizing right. -->
 <svelte:window on:resize={resizeMap} on:load={() => (loaded = true)} />
 
 <div class="w-screen h-screen" id="container">
   <div style="grid-area:filters">Filters</div>
 
   <div style="grid-area:map">
+    <!-- Show the map only once the window has loaded, so that Leaflet gets the sizing right. -->
     {#if loaded || document.readyState === 'complete'}
       <Leaflet bind:map bounds={initialBounds}>
+        <MapControls {msas} {infoMsa} />
         {#each activeMsas as msa (msa.id)}
           <GeoJson
             geojson={msa.feature}
             fillOpacity={0.6}
             weight={1}
             color={netToColor(msa[countField])}
-            on:mouseover={() => (hoverMsa = msa)}>
-            <Tooltip sticky={true}>
-              <table class="p-2">
-                <tr class="py-2">
-                  <td class="text-right pr-2">Name:</td>
-                  <td><strong>{msa.name}</strong></td>
-                </tr>
-                <tr class="py-2">
-                  <td class="text-right pr-2">Net Flow:</td>
-                  <td>
-                    <strong>{msa.net}
-                      ({Math.abs(msa.netAsPercent).toFixed(1)}%)</strong>
-                  </td>
-                </tr>
-              </table>
-            </Tooltip>
-          </GeoJson>
+            on:click={() => (clickMsa = msa)}
+            on:mouseover={() => {
+              hoverMsa = msa;
+              hoveringInList = false;
+            }}
+            on:mouseout={() => {
+              if (hoverMsa === msa) {
+                hoverMsa = undefined;
+              }
+            }} />
         {/each}
 
         {#each lines as line}
@@ -215,24 +202,40 @@
   </div>
 
   <div style="grid-area:controls" class="flex text-sm">
-    {#if hoverMsa}
+    {#if listMsa}
       <div class="w-1/3">
-        <p>{hoverMsa.id}</p>
-        <p>{hoverMsa.name}</p>
-        <p>{hoverMsa.population}</p>
-      </div>
-
-      <div class="w-1/3">
-        <p class="font-medium text-gray-800">Incoming</p>
-        {#each hoverMsa.incoming.slice(0, 10) as msa}
-          <p>{msas.get(msa.id).name} - {msa.count}</p>
+        <p class="font-medium text-gray-800">Top Sources</p>
+        {#each listMsa.incoming.slice(0, 10) as msa}
+          <p
+            class="hover:bg-gray-100 cursor-pointer"
+            on:click={() => (clickMsa = msas.get(msa.id))}
+            on:mouseover={() => {
+              hoverMsa = msas.get(msa.id);
+              hoveringInList = true;
+            }}
+            on:mouseout={() => (hoverMsa = null)}>
+            {msas.get(msa.id).name}
+            -
+            {msa.count}
+          </p>
         {/each}
       </div>
 
       <div class="w-1/3">
-        <p class="font-medium text-gray-800">Outgoing</p>
-        {#each hoverMsa.outgoing.slice(0, 10) as msa}
-          <p>{msas.get(msa.id).name} - {msa.count}</p>
+        <p class="font-medium text-gray-800">Top Destinations</p>
+        {#each listMsa.outgoing.slice(0, 10) as msa}
+          <p
+            class="hover:bg-gray-100 cursor-pointer"
+            on:mouseover={() => {
+              hoverMsa = msas.get(msa.id);
+              hoveringInList = true;
+            }}
+            on:mouseout={() => (hoverMsa = null)}
+            on:click={() => (clickMsa = msas.get(msa.id))}>
+            {msas.get(msa.id).name}
+            -
+            {msa.count}
+          </p>
         {/each}
       </div>
     {/if}

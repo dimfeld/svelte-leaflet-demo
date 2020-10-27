@@ -62,7 +62,7 @@
   });
 
   $: if ($layerGroup && !line) {
-    line = new L.Polyline(latLngs, lineStyle)
+    line = new L.Polyline(latLngs, { ...lineStyle, interactive: false })
       .on('click', (e) => dispatch('click', e))
       .on('mouseover', (e) => dispatch('mouseover', e))
       .on('mouseout', (e) => dispatch('mouseout', e))

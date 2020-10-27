@@ -53,11 +53,10 @@
   });
 </script>
 
-<div
-  style={showContents ? '' : 'display:none'}
-  bind:this={tooltipElement}
-  class={classNames}>
-  {#if showContents}
-    <slot />
-  {/if}
+<div class="hidden">
+  <div bind:this={tooltipElement} class={classNames}>
+    {#if showContents}
+      <slot />
+    {/if}
+  </div>
 </div>

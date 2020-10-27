@@ -47,11 +47,10 @@
   });
 </script>
 
-<div
-  style={showContents ? '' : 'display:none'}
-  bind:this={popupElement}
-  class={classNames}>
-  {#if showContents}
-    <slot />
-  {/if}
+<div class="hidden">
+  <div bind:this={popupElement} class={classNames}>
+    {#if showContents}
+      <slot />
+    {/if}
+  </div>
 </div>

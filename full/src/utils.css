@@ -6,3 +6,7 @@
 * {
   position: relative;
 }
+
+.leaflet-control-container {
+  position: static;
+}
