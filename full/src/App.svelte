@@ -151,6 +151,8 @@
     ...linesForMsa(clickMsa),
     ...(hoverMsa && hoverMsa !== clickMsa ? linesForMsa(hoverMsa) : []),
   ];
+
+  $: hasLines = new Set(lines.flatMap((l) => l.id.split(':')));
 </script>
 
 <style>
@@ -172,13 +174,14 @@
     <!-- Show the map only once the window has loaded, so that Leaflet gets the sizing right. -->
     {#if loaded || document.readyState === 'complete'}
       <Leaflet bind:map bounds={initialBounds}>
-        <MapControls {msas} {infoMsa} />
+        <MapControls {initialBounds} {msas} {infoMsa} />
         {#each activeMsas as msa (msa.id)}
           <GeoJson
             geojson={msa.feature}
             fillOpacity={0.6}
-            weight={1}
-            color={netToColor(msa[countField])}
+            fillColor={netToColor(msa[countField])}
+            weight={hasLines.has(msa.id) ? 2 : 0}
+            color="black"
             on:click={() => (clickMsa = msa)}
             on:mouseover={() => {
               hoverMsa = msa;
