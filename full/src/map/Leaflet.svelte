@@ -43,6 +43,12 @@
   $: map?.fitBounds(bounds);
 </script>
 
+<style>
+  :global(.leaflet-control-container) {
+    position: static;
+  }
+</style>
+
 <div style="height:{height};width:100%" use:createLeaflet>
   <slot {map} />
 </div>
