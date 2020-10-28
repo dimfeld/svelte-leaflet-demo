@@ -5,4 +5,8 @@ module.exports = {
   },
   variants: {},
   plugins: [require('@tailwindcss/ui')],
+  experimental: {
+    applyComplexClasses: true,
+    defaultLineHeights: true,
+  },
 };

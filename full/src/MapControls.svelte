@@ -16,7 +16,7 @@
 
 <style lang="postcss">
   button {
-    @apply h-7 w-7 p-1 rounded transition-colors duration-200 text-gray-800;
+    @apply h-7 w-7 p-1 rounded transition-colors duration-200 text-gray-800 hover:bg-gray-200 hover:text-gray-600 border-gray-900;
   }
 </style>
 
@@ -26,7 +26,6 @@
   <button
     title="Zoom out to entire country"
     type="button"
-    class="hover:bg-gray-200 hover:text-gray-600"
     on:click={() => $map.fitBounds(initialBounds)}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -39,8 +38,7 @@
     </svg>
   </button>
   <button
-    class="cursor-pointer"
-    class:bg-gray-200={showLines}
+    class:border={showLines}
     type="button"
     title="Show lines"
     on:click={() => (showLines = !showLines)}>

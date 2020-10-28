@@ -8,6 +8,7 @@
   import MapControls from './MapControls.svelte';
   import * as topojson from 'topojson-client';
   import { scaleSqrt } from 'd3-scale';
+  import makeLineCoordinates from './map/arrows';
 
   import msaData from '../../data/msas.json';
   import topoData from '../../data/topo.json';
@@ -115,41 +116,75 @@
 
   interface Line {
     id: string;
-    latLngs: [number, number][];
+    latLngs: L.LatLng[];
+    color: string;
+    weight: number;
+    calcLine: () => { arrow: L.LatLng[][] };
+  }
+
+  interface Arrow {
+    path: L.LatLng[][];
     color: string;
   }
 
-  function linesForMsa(msa: Msa): Line[] {
-    if (!msa) {
+  const baseWeight = 2;
+  const weightMultiplier = 5;
+  function linesForMsa(map: L.Map, msa: Msa): Line[] {
+    if (!map || !msa) {
       return [];
     }
 
-    let centroidLatLng = [msa.centroid[1], msa.centroid[0]];
+    let centroidLatLng = L.latLng(msa.centroid[1], msa.centroid[0]);
 
     let incomingLines = msa.incoming.slice(0, 10).map((flow) => {
       let source = msas.get(flow.id)!;
+      let sourcePoint = L.latLng(source.centroid[1], source.centroid[0]);
+      let calcLine = makeLineCoordinates(map, sourcePoint, centroidLatLng);
       return {
         id: `${msa.id}:${source.id}`,
-        latLngs: [[source.centroid[1], source.centroid[0]], centroidLatLng],
-        color: 'orange',
+        latLngs: [sourcePoint, centroidLatLng],
+        color: 'hsl(30, 100%, 40%)',
+        weight:
+          baseWeight + (flow.count / msa.incoming[0].count) * weightMultiplier,
+        calcLine,
       };
     });
 
     let outgoingLines = msa.outgoing.slice(0, 10).map((flow) => {
       let dest = msas.get(flow.id)!;
+      let destPoint = L.latLng(dest.centroid[1], dest.centroid[0]);
+      let calcLine = makeLineCoordinates(map, centroidLatLng, destPoint);
       return {
         id: `${dest.id}:${msa.id}`,
-        latLngs: [centroidLatLng, [dest.centroid[1], dest.centroid[0]]],
+        latLngs: [centroidLatLng, destPoint],
         color: 'blue',
+        weight:
+          baseWeight + (flow.count / msa.outgoing[0].count) * weightMultiplier,
+        calcLine,
       };
     });
 
     return [...incomingLines, ...outgoingLines];
   }
 
+  let lineArrows: Arrow[];
+  let zoomed = 0;
+  $: {
+    zoomed;
+    lineArrows = lines.map((line) => ({
+      path: line.calcLine().arrow,
+      color: line.color,
+    }));
+  }
+
+  $: if (map && !zoomed) {
+    zoomed = 1;
+    map.addEventListener('zoom', () => zoomed++);
+  }
+
   $: lines = [
-    ...linesForMsa(clickMsa),
-    ...(hoverMsa && hoverMsa !== clickMsa ? linesForMsa(hoverMsa) : []),
+    ...linesForMsa(map, clickMsa),
+    ...(hoverMsa && hoverMsa !== clickMsa ? linesForMsa(map, hoverMsa) : []),
   ];
 
   $: hasLines = new Set(lines.flatMap((l) => l.id.split(':')));
@@ -200,7 +235,16 @@
             <Polyline
               latLngs={line.latLngs}
               color={line.color}
+              weight={line.weight}
               dashArray="8 10" />
+          {/each}
+
+          {#each lineArrows as arrow}
+            <Polyline
+              latLngs={arrow.path}
+              color={arrow.color}
+              fillOpacity={1}
+              fill={true} />
           {/each}
         {/if}
       </Leaflet>

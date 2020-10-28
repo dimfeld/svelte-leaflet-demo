@@ -10,7 +10,7 @@
   import * as L from 'leaflet';
   import flush from 'just-flush';
 
-  export let latLngs: [number, number][];
+  export let latLngs: L.LatLngExpression[] | L.LatLngExpression[][];
   export let color: string;
   export let weight: number | undefined = undefined;
   export let opacity: number | undefined = undefined;
