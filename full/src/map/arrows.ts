@@ -6,6 +6,9 @@ const arrowSideAngle = Math.PI / 8;
 const omitArrowThreshold = 40;
 const minArrowSpacing = 200; // in pixels
 
+// The height of the arrow from base to tip.
+const arrowHeight = arrowSideLength * Math.sin(arrowSideAngle);
+
 export default function makeLineCoordinates(
   map: L.Map,
   from: L.LatLng,
@@ -13,20 +16,18 @@ export default function makeLineCoordinates(
 ) {
   let fromPointOrig = map.latLngToLayerPoint(from);
   let toPointOrig = map.latLngToLayerPoint(to);
-  let lineAngle = Math.atan2(
-    toPointOrig.y - fromPointOrig.y,
-    toPointOrig.x - fromPointOrig.x
-  );
+  let lineAngle =
+    Math.atan2(
+      toPointOrig.y - fromPointOrig.y,
+      toPointOrig.x - fromPointOrig.x
+    ) + Math.PI;
+
+  // Calculate how much to bump the arrow, so that it doesn't look off-center
+  // on short lines.
+  let xBump = Math.cos(lineAngle) * (arrowHeight / 2);
+  let yBump = Math.sin(lineAngle) * (arrowHeight / 2);
 
   return function calcLine() {
-    // The height of the arrow from base to tip.
-    const arrowHeight = arrowSideLength * Math.sin(arrowSideAngle);
-
-    // Calculate how much to bump the arrow, so that it doesn't look off-center
-    // on short lines.
-    let xBump = Math.cos(lineAngle) * (arrowHeight / 2);
-    let yBump = Math.sin(lineAngle) * (arrowHeight / 2);
-
     // Get the current pixel coordinates of the ends of the line.
     let toPoint = map.latLngToLayerPoint(to);
     let fromPoint = map.latLngToLayerPoint(from);
