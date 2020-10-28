@@ -3,7 +3,7 @@
   import type { Msa, Flow } from './types';
   import Leaflet from './map/Leaflet.svelte';
   import GeoJson from './map/GeoJson.svelte';
-  import PolyLine from './map/PolyLine.svelte';
+  import Polyline from './map/Polyline.svelte';
   import Tooltip from './map/Tooltip.svelte';
   import MapControls from './MapControls.svelte';
   import * as topojson from 'topojson-client';
@@ -197,7 +197,7 @@
 
         {#if showLines}
           {#each lines as line}
-            <PolyLine
+            <Polyline
               latLngs={line.latLngs}
               color={line.color}
               dashArray="8 10" />
