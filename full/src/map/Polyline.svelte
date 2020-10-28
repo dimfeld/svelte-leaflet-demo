@@ -37,6 +37,7 @@
     | 'nonzero'
     | 'evenodd'
     | undefined = undefined;
+  export let style: string | undefined = undefined;
 
   const dispatch = createEventDispatcher();
 
@@ -76,6 +77,10 @@
       line = undefined;
     }
   });
+
+  $: if (line && style) {
+    line.getElement()?.setAttribute('style', style);
+  }
 
   $: line?.setStyle(lineStyle);
   $: if (line) {

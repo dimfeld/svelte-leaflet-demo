@@ -118,7 +118,7 @@
     id: string;
     latLngs: L.LatLng[];
     color: string;
-    weight: number;
+    animationSpeed: string;
     calcLine: () => { arrow: L.LatLng[][] };
   }
 
@@ -127,8 +127,6 @@
     color: string;
   }
 
-  const baseWeight = 2;
-  const weightMultiplier = 5;
   function linesForMsa(map: L.Map, msa: Msa): Line[] {
     if (!map || !msa) {
       return [];
@@ -140,12 +138,12 @@
       let source = msas.get(flow.id)!;
       let sourcePoint = L.latLng(source.centroid[1], source.centroid[0]);
       let calcLine = makeLineCoordinates(map, sourcePoint, centroidLatLng);
+      let percentOfMax = flow.count / msa.incoming[0].count;
       return {
         id: `${msa.id}:${source.id}`,
         latLngs: [sourcePoint, centroidLatLng],
         color: 'hsl(30, 100%, 40%)',
-        weight:
-          baseWeight + (flow.count / msa.incoming[0].count) * weightMultiplier,
+        animationSpeed: 1000 + (1 - percentOfMax) * 3000 + 'ms',
         calcLine,
       };
     });
@@ -154,12 +152,12 @@
       let dest = msas.get(flow.id)!;
       let destPoint = L.latLng(dest.centroid[1], dest.centroid[0]);
       let calcLine = makeLineCoordinates(map, centroidLatLng, destPoint);
+      let percentOfMax = flow.count / msa.outgoing[0].count;
       return {
         id: `${dest.id}:${msa.id}`,
         latLngs: [centroidLatLng, destPoint],
         color: 'blue',
-        weight:
-          baseWeight + (flow.count / msa.outgoing[0].count) * weightMultiplier,
+        animationSpeed: 1000 + (1 - percentOfMax) * 3000 + 'ms',
         calcLine,
       };
     });
@@ -235,9 +233,9 @@
             <Polyline
               latLngs={line.latLngs}
               color={line.color}
-              weight={line.weight}
               className="animate-dash-offset"
-              dashArray="8 10" />
+              dashArray="8 10"
+              style="--animation-speed:{line.animationSpeed}" />
           {/each}
 
           {#each lineArrows as arrow}

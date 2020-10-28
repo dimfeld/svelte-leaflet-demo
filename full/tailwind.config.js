@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        'dash-offset': 'dash-offset 2s linear infinite',
+        'dash-offset': 'dash-offset var(--animation-speed, 2s) linear infinite',
       },
       keyframes: {
         'dash-offset': {
