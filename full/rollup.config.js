@@ -40,6 +40,13 @@ export default {
     assetFileNames: '[name].[hash][extname]',
     sourcemap: production ? true : 'inline',
     format: 'esm',
+    manualChunks(id) {
+      if (id.includes('node_modules')) {
+        return 'vendor';
+      } else if (id.endsWith('.json')) {
+        return 'data';
+      }
+    },
   },
   plugins: [
     svelte({
