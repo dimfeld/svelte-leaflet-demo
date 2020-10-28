@@ -206,7 +206,7 @@
 <div class="w-screen h-screen" id="container">
   <div style="grid-area:filters">Filters</div>
 
-  <div style="grid-area:map">
+  <div style="grid-area:map;--dash-length:18">
     <!-- Show the map only once the window has loaded, so that Leaflet gets the sizing right. -->
     {#if loaded || document.readyState === 'complete'}
       <Leaflet bind:map bounds={initialBounds}>
@@ -236,6 +236,7 @@
               latLngs={line.latLngs}
               color={line.color}
               weight={line.weight}
+              className="animate-dash-offset"
               dashArray="8 10" />
           {/each}
 
