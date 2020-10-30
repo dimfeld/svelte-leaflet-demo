@@ -13,26 +13,23 @@
 
   export let tooltip: L.Tooltip | undefined = undefined;
 
-  const layer = getContext<Readable<L.Layer>>('layer');
-  let layerStore = writable<L.Tooltip | undefined>(tooltip);
-  setContext('layer', layerStore);
+  const layer = getContext<() => L.Layer>('layer')();
 
   let tooltipElement: HTMLElement;
   let showContents = permanent;
   let tooltipOpen = permanent;
-  $: if ($layer && tooltipElement && !tooltip) {
+  $: if (tooltipElement && !tooltip) {
     tooltip = L.tooltip({ permanent, sticky, interactive }).setContent(
       tooltipElement
     );
-    $layer.bindTooltip(tooltip);
-    layerStore.set(tooltip);
+    layer.bindTooltip(tooltip);
 
-    $layer.on('tooltipopen', () => {
+    layer.on('tooltipopen', () => {
       tooltipOpen = true;
       showContents = true;
     });
 
-    $layer.on('tooltipclose', () => {
+    layer.on('tooltipclose', () => {
       tooltipOpen = false;
       // Wait for the tooltip to completely fade out before destroying it.
       // Otherwise the fade out looks weird as the contents disappear too early.
@@ -46,7 +43,7 @@
 
   onDestroy(() => {
     if (tooltip) {
-      $layer?.unbindTooltip();
+      layer.unbindTooltip();
       tooltip.remove();
       tooltip = undefined;
     }

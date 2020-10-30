@@ -18,36 +18,21 @@
   export let fillOpacity: number | undefined = undefined;
   export let weight: number | undefined = undefined;
 
-  export let layer: L.GeoJSON | null = null;
+  const container = getContext<() => L.LayerGroup>('layerGroup')();
+  export let layer: L.GeoJSON = L.geoJSON(geojson)
+    .on('mouseover', (e) => dispatch('mouseover', e))
+    .on('mouseout', (e) => dispatch('mouseout', e))
+    .on('click', (e) => dispatch('click', e))
+    .addTo(container);
 
-  const container: Readable<L.LayerGroup> = getContext('layerGroup');
-  let layerStore = writable<L.GeoJSON | null>(layer);
-  setContext('layer', layerStore);
-
-  $: layerStyle = flush({ color, fillColor, fillOpacity, weight });
-
-  $: if ($container && !layer) {
-    layer = L.geoJSON(geojson, {
-      style: function (feature) {
-        return layerStyle;
-      },
-    })
-      .on('mouseover', (e) => dispatch('mouseover', e))
-      .on('mouseout', (e) => dispatch('mouseout', e))
-      .on('click', (e) => dispatch('click', e));
-
-    layerStore.set(layer);
-    layer.addTo($container);
-  }
+  setContext('layer', () => layer);
 
   onDestroy(() => {
-    if (layer) {
-      layer.remove();
-      layer = null;
-    }
+    layer.remove();
   });
 
-  $: layer?.setStyle(layerStyle);
+  $: layerStyle = flush({ color, fillColor, fillOpacity, weight });
+  $: layer.setStyle(layerStyle);
 </script>
 
 <slot />

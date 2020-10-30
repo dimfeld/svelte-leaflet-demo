@@ -3,9 +3,8 @@
   import Control from './map/Control.svelte';
   import type { Msa } from './types';
   import { getContext } from 'svelte';
-  import type { Readable } from 'svelte/store';
 
-  const map = getContext<Readable<L.Map>>('map');
+  const map = getContext<() => L.Map>('map')();
 
   export let initialBounds: L.LatLngBounds;
   export let msas: Map<string, Msa>;
@@ -26,7 +25,7 @@
   <button
     title="Zoom out to entire country"
     type="button"
-    on:click={() => $map.fitBounds(initialBounds)}>
+    on:click={() => map.fitBounds(initialBounds)}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"

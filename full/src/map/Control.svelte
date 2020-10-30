@@ -19,7 +19,6 @@
 </script>
 
 <script lang="ts">
-  import type { Readable } from 'svelte/store';
   import { getContext, onDestroy } from 'svelte';
 
   let classNames: string | undefined = undefined;
@@ -30,10 +29,10 @@
   export let control: Control | undefined = undefined;
 
   let container: HTMLElement;
-  const map = getContext<Readable<L.Map>>('map');
+  const map = getContext<() => L.Map>('map')();
 
-  $: if ($map && !control && container) {
-    control = new Control(container, position).addTo($map);
+  $: if (map && !control && container) {
+    control = new Control(container, position).addTo(map);
   }
 
   onDestroy(() => {
@@ -46,6 +45,8 @@
 
 <div class="hidden">
   <div bind:this={container} class={classNames}>
-    <slot {control} />
+    {#if control}
+      <slot {control} />
+    {/if}
   </div>
 </div>

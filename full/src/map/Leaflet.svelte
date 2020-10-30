@@ -8,18 +8,18 @@
   export let bounds: L.LatLngBounds;
   export let map: L.Map | undefined = undefined;
 
-  let mapStore = writable<L.Map | undefined>(undefined);
-  setContext('layerGroup', mapStore);
-  setContext('layer', mapStore);
-  setContext('map', mapStore);
+  const getMap = () => map;
+  setContext('layerGroup', getMap);
+  setContext('layer', getMap);
+  setContext('map', getMap);
 
-  function createLeaflet(node) {
+  function createLeaflet(node: HTMLElement) {
     map = L.map(node).fitBounds(bounds);
-    mapStore.set(map);
-
     setTimeout(() => {
-      map.invalidateSize();
-      map.fitBounds(bounds);
+      if (map) {
+        map.invalidateSize();
+        map.fitBounds(bounds);
+      }
     }, 250);
 
     L.tileLayer(
@@ -50,5 +50,7 @@
 </style>
 
 <div style="height:{height};width:100%" use:createLeaflet>
-  <slot {map} />
+  {#if map}
+    <slot {map} />
+  {/if}
 </div>
