@@ -68,8 +68,7 @@ export default {
     resolve({
       mainFields: ['module', 'browser', 'main'],
       extensions: ['.mjs', '.js', '.json', '.ts', '.svelte'],
-      dedupe: (importee) =>
-        importee === 'svelte' || importee.startsWith('svelte/'),
+      dedupe: ['svelte'],
     }),
     copy({
       targets: [{ src: 'static/**/*', dest: 'public/' }],

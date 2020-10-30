@@ -15,7 +15,7 @@
   "dependencies": {
     "d3-scale": "^3.2.3",
     "just-flush": "^1.1.0",
-    "leaflet": "^1.7.1",
+    "leaflet": "~1.6",
     "sirv-cli": "^0.4.4"
   },
   "devDependencies": {
