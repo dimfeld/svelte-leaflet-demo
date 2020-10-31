@@ -11,6 +11,7 @@
   export let infoMsa: Msa | undefined = undefined;
 
   export let showLines = true;
+  export let filterSetting = 'all';
 </script>
 
 <style lang="postcss">
@@ -51,6 +52,27 @@
         clip-rule="evenodd" />
     </svg>
   </button>
+</Control>
+
+<Control
+  position="topright"
+  class="border border-gray-600 px-4 py-2 bg-gray-200 bg-opacity-75 flex flex-col space-y-2 text-sm font-medium text-gray-800">
+  <p>Show...</p>
+  <label class="flex items-center space-x-1"><input
+      type="radio"
+      bind:group={filterSetting}
+      value="all" />
+    <span>All Regions</span></label>
+  <label class="flex items-center space-x-1"><input
+      type="radio"
+      bind:group={filterSetting}
+      value="largeNetPercent" />
+    <span>Largest % Change</span></label>
+  <label class="flex items-center space-x-1"><input
+      type="radio"
+      bind:group={filterSetting}
+      value="largeNet" />
+    <span>Largest Total Change</span></label>
 </Control>
 
 {#if infoMsa}

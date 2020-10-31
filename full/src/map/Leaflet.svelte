@@ -1,12 +1,13 @@
 <script lang="typescript">
-  import { setContext } from 'svelte';
-  import { writable } from 'svelte/store';
+  import { createEventDispatcher, setContext } from 'svelte';
   import * as L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
 
   export let height = '100%';
   export let bounds: L.LatLngBounds;
   export let map: L.Map | undefined = undefined;
+
+  const dispatch = createEventDispatcher();
 
   const getMap = () => map;
   setContext('layerGroup', getMap);

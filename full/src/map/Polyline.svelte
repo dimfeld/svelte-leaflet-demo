@@ -35,7 +35,7 @@
     | 'nonzero'
     | 'evenodd'
     | undefined = undefined;
-  export let interactive = false;
+  export let interactive = true;
   export let style: string | undefined = undefined;
 
   const dispatch = createEventDispatcher();

@@ -86,13 +86,35 @@
     }
   };
 
-  $: sortedMsas = Array.from(msas.values()).sort(
-    (a, b) => b[countField] - a[countField]
-  );
+  interface SortSetting {
+    sort: (a: Msa, b: Msa) => number;
+    limit: (list: Msa[]) => Msa[];
+  }
+  const sortSettings: Record<string, SortSetting> = {
+    all: {
+      sort: (a, b) => b.netAsPercent - a.netAsPercent,
+      limit: (list) => list,
+    },
+    largeNetPercent: {
+      sort: (a, b) => b.netAsPercent - a.netAsPercent,
+      limit: (list) => list.slice(0, 20).concat(list.slice(-20)),
+    },
+    largeNet: {
+      sort: (a, b) => b.net - a.net,
+      limit: (list) => list.slice(0, 20).concat(list.slice(-20)),
+    },
+  };
+
+  let filterSetting: string = 'all';
+  let activeMsas: Msa[] = [];
+  $: {
+    let sortedMsas = Array.from(msas.values()).sort(
+      sortSettings[filterSetting].sort
+    );
+    activeMsas = sortSettings[filterSetting].limit(sortedMsas);
+  }
 
   let countField: keyof Msa = 'netAsPercent';
-  // let activeMsas = [...msasByNet.slice(0, 20), ...msasByNet.slice(-20)];
-  $: activeMsas = sortedMsas;
   $: colorBounds = activeMsas.reduce(
     (acc, msa) => {
       return {
@@ -187,6 +209,11 @@
 
   $: hasLines = new Set(lines.flatMap((l) => l.id.split(':')));
   let showLines = true;
+
+  $: allShownMsas = Array.from(
+    new Set([...hasLines, ...activeMsas.map((m) => m.id)]),
+    (id) => msas.get(id)
+  );
 </script>
 
 <style>
@@ -208,8 +235,13 @@
     <!-- Show the map only once the window has loaded, so that Leaflet gets the sizing right. -->
     {#if loaded || document.readyState === 'complete'}
       <Leaflet bind:map bounds={initialBounds}>
-        <MapControls {initialBounds} {msas} {infoMsa} bind:showLines />
-        {#each activeMsas as msa (msa.id)}
+        <MapControls
+          {initialBounds}
+          {msas}
+          {infoMsa}
+          bind:showLines
+          bind:filterSetting />
+        {#each allShownMsas as msa (msa.id)}
           <GeoJson
             geojson={msa.feature}
             fillOpacity={0.6}
@@ -235,7 +267,8 @@
               color={line.color}
               className="animate-dash-offset"
               dashArray="8 10"
-              style="--animation-speed:{line.animationSpeed}" />
+              style="--animation-speed:{line.animationSpeed}"
+              interactive={false} />
           {/each}
 
           {#each lineArrows as arrow}
@@ -243,7 +276,8 @@
               latLngs={arrow.path}
               color={arrow.color}
               fillOpacity={1}
-              fill={true} />
+              fill={true}
+              interactive={false} />
           {/each}
         {/if}
       </Leaflet>
