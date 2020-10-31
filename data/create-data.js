@@ -43,7 +43,26 @@ let geojson = topojson.feature(topoData, 'cb_2018_us_cbsa_500k');
 let msaData = new Map();
 
 for(let feature of geojson.features) {
-    let centroid = turf.centroid(feature);
+    let centroid;
+
+    if(feature.geometry.type === 'MultiPolygon') {
+        // For MultiPolygons, find the area of the largest polygon and use the centroid
+        // of that one. This is mostly to make Oahu look correct, for which the GeoJSON
+        // has a lot of huge outliers.
+        let largest = feature.geometry.coordinates.map((c) => {
+            let poly = turf.polygon(c);
+            return {
+                area: turf.area(poly),
+                poly,
+            }
+        }).sort((a, b) => b.area - a.area);
+
+        centroid = turf.centerOfMass(largest[0].poly);
+    } else {
+        centroid = turf.centerOfMass(feature);
+    }
+
+
     msaData.set(feature.properties.CBSAFP, {
         id: feature.properties.CBSAFP,
         centroid: centroid.geometry.coordinates
