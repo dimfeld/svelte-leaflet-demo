@@ -1,8 +1,6 @@
 <script lang="ts">
   import * as L from 'leaflet';
-  import type { Readable } from 'svelte/store';
-  import { writable } from 'svelte/store';
-  import { getContext, setContext, onDestroy } from 'svelte';
+  import { getContext } from 'svelte';
 
   let classNames: string | undefined = undefined;
   export { classNames as class };
@@ -15,13 +13,14 @@
 
   const layer = getContext<() => L.Layer>('layer')();
 
-  let tooltipElement: HTMLElement;
   let showContents = permanent;
   let tooltipOpen = permanent;
-  $: if (tooltipElement && !tooltip) {
+
+  function createTooltip(tooltipElement: HTMLElement) {
     tooltip = L.tooltip({ permanent, sticky, interactive }).setContent(
       tooltipElement
     );
+
     layer.bindTooltip(tooltip);
 
     layer.on('tooltipopen', () => {
@@ -39,19 +38,21 @@
         }
       }, 500);
     });
-  }
 
-  onDestroy(() => {
-    if (tooltip) {
-      layer.unbindTooltip();
-      tooltip.remove();
-      tooltip = undefined;
-    }
-  });
+    return {
+      destroy() {
+        if (tooltip) {
+          layer.unbindTooltip();
+          tooltip.remove();
+          tooltip = undefined;
+        }
+      },
+    };
+  }
 </script>
 
 <div class="hidden">
-  <div bind:this={tooltipElement} class={classNames}>
+  <div use:createTooltip class={classNames}>
     {#if showContents}
       <slot />
     {/if}

@@ -1,18 +1,17 @@
 <script lang="ts">
   import * as L from 'leaflet';
-  import { getContext, onDestroy } from 'svelte';
-
-  const layer = getContext<() => L.Layer>('layer')();
+  import { getContext } from 'svelte';
 
   let classNames: string | undefined = undefined;
   export { classNames as class };
 
   export let popup: L.Popup | undefined = undefined;
 
-  let popupElement: HTMLElement;
   let showContents = false;
   let popupOpen = false;
-  $: if (!popup && popupElement) {
+
+  const layer = getContext<() => L.Layer>('layer')();
+  function createPopup(popupElement: HTMLElement) {
     popup = L.popup().setContent(popupElement);
     layer.bindPopup(popup);
 
@@ -31,19 +30,21 @@
         }
       }, 500);
     });
-  }
 
-  onDestroy(() => {
-    if (popup) {
-      layer.unbindPopup();
-      popup.remove();
-      popup = undefined;
-    }
-  });
+    return {
+      destroy() {
+        if (popup) {
+          layer.unbindPopup();
+          popup.remove();
+          popup = undefined;
+        }
+      },
+    };
+  }
 </script>
 
 <div class="hidden">
-  <div bind:this={popupElement} class={classNames}>
+  <div use:createPopup class={classNames}>
     {#if showContents}
       <slot />
     {/if}
