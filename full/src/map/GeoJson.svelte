@@ -1,8 +1,6 @@
 <script lang="typescript">
   import * as L from 'leaflet';
   import flush from 'just-flush';
-  import type { Readable } from 'svelte/store';
-  import { writable } from 'svelte/store';
   import {
     getContext,
     setContext,
@@ -14,12 +12,14 @@
 
   export let geojson: any;
   export let color: string;
+  export let pane: string | undefined = undefined;
   export let fillColor: string | undefined = undefined;
   export let fillOpacity: number | undefined = undefined;
   export let weight: number | undefined = undefined;
 
   const container = getContext<() => L.LayerGroup>('layerGroup')();
-  export let layer: L.GeoJSON = L.geoJSON(geojson)
+  let layerPane = pane || getContext<string>('pane');
+  export let layer: L.GeoJSON = L.geoJSON(geojson, flush({ pane: layerPane }))
     .on('mouseover', (e) => dispatch('mouseover', e))
     .on('mouseout', (e) => dispatch('mouseout', e))
     .on('click', (e) => dispatch('click', e))

@@ -22,7 +22,7 @@
 
 <Control
   position="topright"
-  class="p-2 border border-black bg-white flex space-x-2">
+  class="p-2 border border-black bg-white flex space-x-2 shadow-xl">
   <button
     title="Zoom out to entire country"
     type="button"
@@ -56,7 +56,7 @@
 
 <Control
   position="topright"
-  class="border border-gray-600 px-4 py-2 bg-gray-200 bg-opacity-75 flex flex-col space-y-2 text-sm font-medium text-gray-800">
+  class="border border-gray-600 px-4 py-2 bg-gray-200 bg-opacity-75 flex flex-col space-y-2 text-xxs sm:text-sm font-medium text-gray-800 shadow-xl">
   <p>Show...</p>
   <label class="flex items-center space-x-1"><input
       type="radio"

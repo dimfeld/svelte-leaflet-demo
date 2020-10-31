@@ -12,6 +12,7 @@
   export let color: string;
   export let weight: number | undefined = undefined;
   export let opacity: number | undefined = undefined;
+  export let pane: string | undefined = undefined;
   export let lineCap:
     | 'butt'
     | 'round'
@@ -40,11 +41,17 @@
 
   const dispatch = createEventDispatcher();
 
+  let layerPane = pane || getContext<string>('pane');
+
   let layerGroup = getContext<() => L.LayerGroup>('layerGroup')();
-  export let line: L.Polyline = new L.Polyline(latLngs, {
-    interactive,
-    className,
-  })
+  export let line: L.Polyline = new L.Polyline(
+    latLngs,
+    flush({
+      interactive,
+      className,
+      pane: layerPane,
+    })
+  )
     .on('click', (e) => dispatch('click', e))
     .on('mouseover', (e) => dispatch('mouseover', e))
     .on('mouseout', (e) => dispatch('mouseout', e))

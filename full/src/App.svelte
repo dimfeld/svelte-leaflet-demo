@@ -5,6 +5,7 @@
   import GeoJson from './map/GeoJson.svelte';
   import Polyline from './map/Polyline.svelte';
   import Tooltip from './map/Tooltip.svelte';
+  import Pane from './map/Pane.svelte';
   import MapControls from './MapControls.svelte';
   import * as topojson from 'topojson-client';
   import { scaleSqrt } from 'd3-scale';
@@ -221,7 +222,7 @@
     display: grid;
     grid-template:
       'map' auto
-      'controls' 16rem;
+      'controls' 16rem / 100vw;
   }
 </style>
 
@@ -257,64 +258,66 @@
             }} />
         {/each}
 
-        {#if showLines}
-          {#each lines as line}
-            <Polyline
-              latLngs={line.latLngs}
-              color={line.color}
-              className="animate-dash-offset"
-              dashArray="8 10"
-              style="--animation-speed:{line.animationSpeed}"
-              interactive={false} />
-          {/each}
+        <Pane name="linePane" z={450}>
+          {#if showLines}
+            {#each lines as line}
+              <Polyline
+                latLngs={line.latLngs}
+                color={line.color}
+                className="animate-dash-offset"
+                dashArray="8 10"
+                style="--animation-speed:{line.animationSpeed}"
+                interactive={false} />
+            {/each}
 
-          {#each lineArrows as arrow}
-            <Polyline
-              latLngs={arrow.path}
-              color={arrow.color}
-              fillOpacity={1}
-              fill={true}
-              interactive={false} />
-          {/each}
-        {/if}
+            {#each lineArrows as arrow}
+              <Polyline
+                latLngs={arrow.path}
+                color={arrow.color}
+                fillOpacity={1}
+                fill={true}
+                interactive={false} />
+            {/each}
+          {/if}
+        </Pane>
       </Leaflet>
     {/if}
   </div>
 
-  <div style="grid-area:controls" class="flex text-sm">
+  <div
+    style="grid-area:controls"
+    class="w-full flex text-sm justify-between md:px-12">
     {#if listMsa}
-      <div class="w-1/3">
+      <div class="px-2 overflow-x-hidden">
         <p class="font-medium text-gray-800">Top Sources</p>
         {#each listMsa.incoming.slice(0, 10) as msa}
           <p
-            class="hover:bg-gray-100 cursor-pointer"
+            class="hover:bg-gray-100 cursor-pointer flex"
             on:click={() => (clickMsa = msas.get(msa.id))}
             on:mouseover={() => {
               hoverMsa = msas.get(msa.id);
               hoveringInList = true;
             }}
             on:mouseout={() => (hoverMsa = null)}>
-            {msas.get(msa.id).name}
-            -
-            {msa.count}
+            <span class="truncate">{msas.get(msa.id).name}</span>
+            <span class="whitespace-no-wrap">: {msa.count}</span>
           </p>
         {/each}
       </div>
 
-      <div class="w-1/3">
+      <div class="px-2 overflow-x-hidden">
         <p class="font-medium text-gray-800">Top Destinations</p>
         {#each listMsa.outgoing.slice(0, 10) as msa}
           <p
-            class="hover:bg-gray-100 cursor-pointer"
+            class="hover:bg-gray-100 cursor-pointer flex"
             on:mouseover={() => {
               hoverMsa = msas.get(msa.id);
               hoveringInList = true;
             }}
             on:mouseout={() => (hoverMsa = null)}
             on:click={() => (clickMsa = msas.get(msa.id))}>
-            {msas.get(msa.id).name}
-            -
-            {msa.count}
+            <span class="truncate">{msas.get(msa.id).name}</span>
+            <span class="whitespace-no-wrap">: {msa.count}</span>
           </p>
         {/each}
       </div>
