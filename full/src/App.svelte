@@ -220,17 +220,14 @@
   #container {
     display: grid;
     grid-template:
-      'filters map' auto
-      'filters controls' 16rem
-      / 16rem auto;
+      'map' auto
+      'controls' 16rem;
   }
 </style>
 
 <svelte:window on:resize={resizeMap} on:load={() => (loaded = true)} />
 
 <div class="w-screen h-screen" id="container">
-  <div style="grid-area:filters">Filters</div>
-
   <div style="grid-area:map;--dash-length:18">
     <!-- Show the map only once the window has loaded, so that Leaflet gets the sizing right. -->
     {#if loaded || document.readyState === 'complete'}
