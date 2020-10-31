@@ -1,6 +1,6 @@
 import * as L from 'leaflet';
 
-const arrowSideLength = 20; // Length of the arrow "wings"
+const arrowSideLength = 15; // Length of the arrow "wings"
 const arrowSideAngle = Math.PI / 8;
 // Omit the arrow if the line is shorter than this.
 const omitArrowThreshold = 40;
