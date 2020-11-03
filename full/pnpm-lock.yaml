@@ -1,4 +1,5 @@
 dependencies:
+  '@elfalem/leaflet-curve': 0.6.0_leaflet@1.6.0
   d3-scale: 3.2.3
   just-flush: 1.1.0
   leaflet: 1.6.0
@@ -1014,6 +1015,16 @@ packages:
     dev: true
     resolution:
       integrity: sha512-BzSY3NJBKM4kyatSOWh3D/JJ2O3CVzBybHWxtgxnggaxEuaSTTDqeiSb/xk9lrkw2Tbqyivw5ZU4rT+EfznQsA==
+  /@elfalem/leaflet-curve/0.6.0_leaflet@1.6.0:
+    dependencies:
+      leaflet: 1.6.0
+    dev: false
+    optionalDependencies:
+      '@tweenjs/tween.js': 17.6.0
+    peerDependencies:
+      leaflet: ^1.1.0
+    resolution:
+      integrity: sha512-JZxrGE6GQsCRem4uh8hYpF0fgFM82Hh7Tsmnb5z7WyI1y5nxsL0u6h0nPK5nApCrenZkQcwAf4BVLvKouncF3g==
   /@fullhuman/postcss-purgecss/2.3.0:
     dependencies:
       postcss: 7.0.32
@@ -1196,6 +1207,11 @@ packages:
       tailwindcss: ^1.8.3
     resolution:
       integrity: sha512-i0sWpAgnF4VitNqaf4JVDuiaQ3MmREwn7gmNYR6lvX29avYLLNOHf0DgzhVEfwfB+CJ6WjZvPoJuDYExZgWlwQ==
+  /@tweenjs/tween.js/17.6.0:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-utSXj0WHi4qr/iyfFHGMJBaL+ixQ2N7BAmx1R5g8jBqykJfjBUQ0hKWwXf767hbALC3zOoOIofKYSDWu5n04JQ==
   /@types/eslint-visitor-keys/1.0.0:
     dev: true
     resolution:
@@ -6060,6 +6076,7 @@ specifiers:
   '@babel/preset-env': ^7.10.0
   '@babel/preset-typescript': ^7.9.0
   '@babel/runtime': ^7.10.0
+  '@elfalem/leaflet-curve': ^0.6.0
   '@fullhuman/postcss-purgecss': ^3.0.0
   '@rollup/plugin-babel': ^5.0.3
   '@rollup/plugin-commonjs': ^15.0.0

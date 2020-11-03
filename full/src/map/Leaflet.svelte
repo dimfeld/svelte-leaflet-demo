@@ -4,18 +4,23 @@
   import 'leaflet/dist/leaflet.css';
 
   export let height = '100%';
+  export let width = '100%';
   export let bounds: L.LatLngBounds;
   export let map: L.Map | undefined = undefined;
 
+  export const invalidateSize = () => map?.invalidateSize();
+
   const dispatch = createEventDispatcher();
 
-  const getMap = () => map;
+  export const getMap = () => map;
   setContext('layerGroup', getMap);
   setContext('layer', getMap);
   setContext('map', getMap);
 
   function createLeaflet(node: HTMLElement) {
-    map = L.map(node).fitBounds(bounds);
+    map = L.map(node)
+      .fitBounds(bounds)
+      .on('zoom', (e) => dispatch('zoom', e));
     setTimeout(() => {
       if (map) {
         map.invalidateSize();
@@ -50,7 +55,7 @@
   }
 </style>
 
-<div style="height:{height};width:100%" use:createLeaflet>
+<div style="height:{height};width:{width}" use:createLeaflet>
   {#if map}
     <slot {map} />
   {/if}

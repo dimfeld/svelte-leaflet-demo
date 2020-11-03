@@ -4,12 +4,13 @@
   import Leaflet from './map/Leaflet.svelte';
   import GeoJson from './map/GeoJson.svelte';
   import Polyline from './map/Polyline.svelte';
+  import Curve from './map/Curve.svelte';
   import Tooltip from './map/Tooltip.svelte';
   import Pane from './map/Pane.svelte';
   import MapControls from './MapControls.svelte';
   import * as topojson from 'topojson-client';
   import { scaleSqrt } from 'd3-scale';
-  import makeLineCoordinates from './map/arrows';
+  import makeLineCoordinates from './map/curves';
 
   import msaData from '../../data/msas.json';
   import topoData from '../../data/topo.json';
@@ -18,7 +19,7 @@
   const features = topojson.feature(topoData, 'msas');
   console.log(features);
 
-  let map: L.Map;
+  let map: Leaflet;
   function resizeMap() {
     if (map) {
       map.invalidateSize();
@@ -139,18 +140,12 @@
 
   interface Line {
     id: string;
-    latLngs: L.LatLng[];
+    path: (string | [number, number])[];
     color: string;
     animationSpeed: string;
-    calcLine: () => { arrow: L.LatLng[][] };
   }
 
-  interface Arrow {
-    path: L.LatLng[][];
-    color: string;
-  }
-
-  function linesForMsa(map: L.Map, msa: Msa): Line[] {
+  function linesForMsa(map: L.Map | undefined, msa: Msa): Line[] {
     if (!map || !msa) {
       return [];
     }
@@ -160,52 +155,37 @@
     let incomingLines = msa.incoming.slice(0, 10).map((flow) => {
       let source = msas.get(flow.id)!;
       let sourcePoint = L.latLng(source.centroid[1], source.centroid[0]);
-      let calcLine = makeLineCoordinates(map, sourcePoint, centroidLatLng);
+      let path = makeLineCoordinates(map, sourcePoint, centroidLatLng, true);
       let percentOfMax = flow.count / msa.incoming[0].count;
       return {
         id: `${msa.id}:${source.id}`,
-        latLngs: [sourcePoint, centroidLatLng],
+        path,
         color: 'hsl(30, 100%, 40%)',
         animationSpeed: 1000 + (1 - percentOfMax) * 3000 + 'ms',
-        calcLine,
       };
     });
 
     let outgoingLines = msa.outgoing.slice(0, 10).map((flow) => {
       let dest = msas.get(flow.id)!;
       let destPoint = L.latLng(dest.centroid[1], dest.centroid[0]);
-      let calcLine = makeLineCoordinates(map, centroidLatLng, destPoint);
+      let path = makeLineCoordinates(map, centroidLatLng, destPoint, false);
       let percentOfMax = flow.count / msa.outgoing[0].count;
       return {
         id: `${dest.id}:${msa.id}`,
-        latLngs: [centroidLatLng, destPoint],
+        path,
         color: 'blue',
         animationSpeed: 1000 + (1 - percentOfMax) * 3000 + 'ms',
-        calcLine,
       };
     });
 
     return [...incomingLines, ...outgoingLines];
   }
 
-  let lineArrows: Arrow[];
-  let zoomed = 0;
-  $: {
-    zoomed;
-    lineArrows = lines.map((line) => ({
-      path: line.calcLine().arrow,
-      color: line.color,
-    }));
-  }
-
-  $: if (map && !zoomed) {
-    zoomed = 1;
-    map.addEventListener('zoom', () => zoomed++);
-  }
-
   $: lines = [
-    ...linesForMsa(map, clickMsa),
-    ...(hoverMsa && hoverMsa !== clickMsa ? linesForMsa(map, hoverMsa) : []),
+    ...linesForMsa(map?.getMap(), clickMsa),
+    ...(hoverMsa && hoverMsa !== clickMsa
+      ? linesForMsa(map?.getMap(), hoverMsa)
+      : []),
   ];
 
   $: hasLines = new Set(lines.flatMap((l) => l.id.split(':')));
@@ -232,7 +212,7 @@
   <div style="grid-area:map;--dash-length:18">
     <!-- Show the map only once the window has loaded, so that Leaflet gets the sizing right. -->
     {#if loaded || document.readyState === 'complete'}
-      <Leaflet bind:map bounds={initialBounds}>
+      <Leaflet bind:this={map} bounds={initialBounds}>
         <MapControls
           {initialBounds}
           {msas}
@@ -261,21 +241,12 @@
         <Pane name="linePane" z={450}>
           {#if showLines}
             {#each lines as line}
-              <Polyline
-                latLngs={line.latLngs}
+              <Curve
+                path={line.path}
                 color={line.color}
                 className="animate-dash-offset"
                 dashArray="8 10"
                 style="--animation-speed:{line.animationSpeed}"
-                interactive={false} />
-            {/each}
-
-            {#each lineArrows as arrow}
-              <Polyline
-                latLngs={arrow.path}
-                color={arrow.color}
-                fillOpacity={1}
-                fill={true}
                 interactive={false} />
             {/each}
           {/if}

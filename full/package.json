@@ -13,6 +13,7 @@
     "start:dev": "NODE_ENV=development sirv public --single --dev -H 0.0.0.0"
   },
   "dependencies": {
+    "@elfalem/leaflet-curve": "^0.6.0",
     "d3-scale": "^3.2.3",
     "just-flush": "^1.1.0",
     "leaflet": "~1.6",
