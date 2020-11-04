@@ -11,6 +11,7 @@
   export let infoMsa: Msa | undefined = undefined;
 
   export let showLines = true;
+  export let topNFlows = 5;
   export let filterSetting = 'all';
 </script>
 
@@ -57,7 +58,7 @@
 <Control
   position="topright"
   class="border border-gray-600 px-4 py-2 bg-gray-200 bg-opacity-75 flex flex-col space-y-2 text-xxs sm:text-sm font-medium text-gray-800 shadow-xl">
-  <p>Show...</p>
+  <p class="font-bold">Regions</p>
   <label class="flex items-center space-x-1"><input
       type="radio"
       bind:group={filterSetting}
@@ -73,6 +74,16 @@
       bind:group={filterSetting}
       value="largeNet" />
     <span>Largest Total Change</span></label>
+
+  <p>
+    Show top
+    <select bind:value={topNFlows}>
+      <option value={10}>10</option>
+      <option value={5}>5</option>
+      <option value={3}>3</option>
+    </select>
+    flows
+  </p>
 </Control>
 
 {#if infoMsa}

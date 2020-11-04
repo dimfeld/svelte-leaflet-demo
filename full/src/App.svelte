@@ -145,14 +145,14 @@
     animationSpeed: string;
   }
 
-  function linesForMsa(map: L.Map | undefined, msa: Msa): Line[] {
+  function linesForMsa(map: L.Map | undefined, msa: Msa, n: number): Line[] {
     if (!map || !msa) {
       return [];
     }
 
     let centroidLatLng = L.latLng(msa.centroid[1], msa.centroid[0]);
 
-    let incomingLines = msa.incoming.slice(0, 10).map((flow) => {
+    let incomingLines = msa.incoming.slice(0, n).map((flow) => {
       let source = msas.get(flow.id)!;
       let sourcePoint = L.latLng(source.centroid[1], source.centroid[0]);
       let path = makeLineCoordinates(map, sourcePoint, centroidLatLng, true);
@@ -165,7 +165,7 @@
       };
     });
 
-    let outgoingLines = msa.outgoing.slice(0, 10).map((flow) => {
+    let outgoingLines = msa.outgoing.slice(0, n).map((flow) => {
       let dest = msas.get(flow.id)!;
       let destPoint = L.latLng(dest.centroid[1], dest.centroid[0]);
       let path = makeLineCoordinates(map, centroidLatLng, destPoint, false);
@@ -181,10 +181,11 @@
     return [...incomingLines, ...outgoingLines];
   }
 
+  let topNFlows: number;
   $: lines = [
-    ...linesForMsa(map?.getMap(), clickMsa),
+    ...linesForMsa(map?.getMap(), clickMsa, topNFlows),
     ...(hoverMsa && hoverMsa !== clickMsa
-      ? linesForMsa(map?.getMap(), hoverMsa)
+      ? linesForMsa(map?.getMap(), hoverMsa, topNFlows)
       : []),
   ];
 
@@ -218,6 +219,7 @@
           {msas}
           {infoMsa}
           bind:showLines
+          bind:topNFlows
           bind:filterSetting />
         {#each allShownMsas as msa (msa.id)}
           <GeoJson
