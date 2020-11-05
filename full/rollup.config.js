@@ -32,7 +32,7 @@ const babelConfig = {
 };
 
 export default {
-  input: 'src/main.js',
+  input: 'src/index.js',
   output: {
     dir: 'public',
     entryFileNames: '[name].[hash].js',

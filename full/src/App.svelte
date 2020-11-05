@@ -182,12 +182,20 @@
   }
 
   let topNFlows: number;
-  $: lines = [
-    ...linesForMsa(map?.getMap(), clickMsa, topNFlows),
-    ...(hoverMsa && hoverMsa !== clickMsa
-      ? linesForMsa(map?.getMap(), hoverMsa, topNFlows)
-      : []),
-  ];
+  let lines: Line[] = [];
+  $: {
+    // Under Snowpack, getMap will sometimes not be set yet, so we have to check
+    // both for `map` and for `getMap` being set before trying to call it.
+    let m = map?.getMap?.();
+    if (m) {
+      lines = [
+        ...linesForMsa(m, clickMsa, topNFlows),
+        ...(hoverMsa && hoverMsa !== clickMsa
+          ? linesForMsa(m, hoverMsa, topNFlows)
+          : []),
+      ];
+    }
+  }
 
   $: hasLines = new Set(lines.flatMap((l) => l.id.split(':')));
   let showLines = true;
