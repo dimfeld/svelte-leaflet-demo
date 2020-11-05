@@ -1,5 +1,6 @@
 <script lang="ts">
-  import '@elfalem/leaflet-curve';
+  import * as L from 'leaflet';
+  import { curve } from './leaflet.curve';
 
   import {
     createEventDispatcher,
@@ -7,7 +8,6 @@
     setContext,
     onDestroy,
   } from 'svelte';
-  import * as L from 'leaflet';
   import flush from 'just-flush';
 
   export let path: (string | [number, number])[];
@@ -47,7 +47,7 @@
 
   let layerGroup = getContext<() => L.LayerGroup>('layerGroup')();
   // @ts-ignore
-  export let line = (L.curve(
+  export let line = (curve(
     path,
     flush({
       interactive,
