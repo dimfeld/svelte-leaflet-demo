@@ -28,23 +28,20 @@
   /** The control instance created by this component */
   export let control: Control | undefined = undefined;
 
-  let container: HTMLElement;
   const map = getContext<() => L.Map>('map')();
-
-  $: if (map && !control && container) {
+  function createControl(container: HTMLElement) {
     control = new Control(container, position).addTo(map);
+    return {
+      destroy() {
+        control!.remove();
+        control = undefined;
+      },
+    };
   }
-
-  onDestroy(() => {
-    if (control) {
-      control.remove();
-      control = undefined;
-    }
-  });
 </script>
 
 <div class="hidden">
-  <div bind:this={container} class={classNames}>
+  <div use:createControl class={classNames}>
     {#if control}
       <slot {control} />
     {/if}
