@@ -1,0 +1,8 @@
+/* Import Tailwind as Global Utils */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  position: relative;
+}

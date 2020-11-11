@@ -1,0 +1,1389 @@
+dependencies:
+  '@turf/turf': 5.1.6
+  d3-dsv: 2.0.0
+  topojson-client: 3.1.0
+  topojson-server: 3.0.1
+lockfileVersion: 5.2
+packages:
+  /@turf/along/5.1.5:
+    dependencies:
+      '@turf/bearing': 5.1.5
+      '@turf/destination': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-YdbmplhKzdq1asVYTge/jL5fi+s=
+  /@turf/area/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-79iZv9Jgzb0VQbKjwVX4pdLu+h0=
+  /@turf/bbox-clip/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      lineclip: 1.1.5
+    dev: false
+    resolution:
+      integrity: sha1-M2S1Mo3/nzz0HZ4C7a/zdNFQzIQ=
+  /@turf/bbox-polygon/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-auuk7VHYXSluD3w4uIwznwHu4CQ=
+  /@turf/bbox/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-MFHfUUrUxQ9KT5uKLRX9i2hA7aM=
+  /@turf/bearing/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-egt5ATbE70eX8CRjBdRcvi0ns/c=
+  /@turf/bearing/6.0.1:
+    dependencies:
+      '@turf/helpers': 6.1.4
+      '@turf/invariant': 6.1.2
+    dev: false
+    resolution:
+      integrity: sha512-mXY1NozqV9EFfBTbUItujwfqfQF0G/Xe2fzvnZle90ekPEUfhi4Dgf5JswJTd96J9LiT8kcd6Jonp5khnx0wIg==
+  /@turf/bezier-spline/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-WaJ7ul17l+8Vqz/VpA+9I4cEm8o=
+  /@turf/boolean-clockwise/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-MwK32sYsXikaB4nimvcoM4f6nes=
+  /@turf/boolean-contains/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/boolean-point-on-line': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-WW1jruY2961T7pn5/yTJaZSg7xQ=
+  /@turf/boolean-crosses/5.1.5:
+    dependencies:
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/line-intersect': 5.1.5
+      '@turf/polygon-to-line': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-Ab+uollvFk3kpNMlCU3HwlXHFdY=
+  /@turf/boolean-disjoint/5.1.6:
+    dependencies:
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/line-intersect': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/polygon-to-line': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha512-KHvUS6SBNYHBCLIJEJrg04pF5Oy+Fqn8V5G9U+9pti5vI9tyX7Ln2g7RSB7iJ1Cxsz8QAi6OukhXjEF2/8ZpGg==
+  /@turf/boolean-equal/5.1.5:
+    dependencies:
+      '@turf/clean-coords': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      geojson-equality: 0.1.6
+    dev: false
+    resolution:
+      integrity: sha1-Kfj21gu4RQff12WzIlTbjnLJOKQ=
+  /@turf/boolean-overlap/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/line-intersect': 5.1.5
+      '@turf/line-overlap': 5.1.5
+      '@turf/meta': 5.1.6
+      geojson-equality: 0.1.6
+    dev: false
+    resolution:
+      integrity: sha1-DU5kxSx3CijpPZ7834qLg3OsznU=
+  /@turf/boolean-parallel/5.1.5:
+    dependencies:
+      '@turf/clean-coords': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/line-segment': 5.1.5
+      '@turf/rhumb-bearing': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-c5NYR16ltlx+GCejw+DopofTqF0=
+  /@turf/boolean-point-in-polygon/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-8BzBlNHgMKVIv9qYHLpDz9YpQbc=
+  /@turf/boolean-point-on-line/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-9jPF/4Aq0ku48Vja269v9KAj3Xs=
+  /@turf/boolean-within/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/boolean-point-on-line': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-RxBdVtB1Kp0Pv81Dw2pfkUnchpc=
+  /@turf/buffer/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/center': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/projection': 5.1.5
+      d3-geo: 1.7.1
+      turf-jsts: 1.2.3
+    dev: false
+    resolution:
+      integrity: sha1-hByWJ8+5dLEirE4alW8EZrwCMcQ=
+  /@turf/center-mean/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-jI6YdTkeXwnw5uePXWYbiLIQigo=
+  /@turf/center-median/5.1.5:
+    dependencies:
+      '@turf/center-mean': 5.1.5
+      '@turf/centroid': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-u0Yb/noqSGAdikcnaFcYcjoUqHI=
+  /@turf/center-of-mass/5.1.5:
+    dependencies:
+      '@turf/centroid': 5.1.5
+      '@turf/convex': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-TTvXnYhJjbq4Mk1PafAyL2Uguco=
+  /@turf/center/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-RKss2VT2PA03dX9xWKmcPvURS4A=
+  /@turf/centroid/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-d4radCFjNQIa2P0OemWoNJ1Tx2k=
+  /@turf/circle/5.1.5:
+    dependencies:
+      '@turf/destination': 5.1.5
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-mxV3g1UIq1L7HBCypQZcuiuHtqU=
+  /@turf/clean-coords/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-EoAKmKeMmkUqcuxChJPEOs8q2h8=
+  /@turf/clone/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-JT6NNUdxgZduM636tQoPAqfw42c=
+  /@turf/clone/6.0.2:
+    dependencies:
+      '@turf/helpers': 6.1.4
+    dev: false
+    resolution:
+      integrity: sha512-UVpYPnW3wRj3bPncR6Z2PRbowBk+nEdVWgGewPxrKKLfvswtVtG9n/OIyvbU3E3ZOadBVxTH2uAMEMOz4800FA==
+  /@turf/clusters-dbscan/5.1.5:
+    dependencies:
+      '@turf/clone': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+      density-clustering: 1.3.0
+    dev: false
+    resolution:
+      integrity: sha1-V4H7TmVsdHoLjpk333MYHAMJ4m8=
+  /@turf/clusters-kmeans/5.1.5:
+    dependencies:
+      '@turf/clone': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+      skmeans: 0.9.7
+    dev: false
+    resolution:
+      integrity: sha1-/W3+qLEzuovcI3CsPKzuFYejAvE=
+  /@turf/clusters/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-ZzpeXxsZycq6vFfJCO6t1oIiTdQ=
+  /@turf/collect/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/helpers': 5.1.5
+      rbush: 2.0.2
+    dev: false
+    resolution:
+      integrity: sha1-/pjJqMIY7PJP/DPXApUXt8GbKj4=
+  /@turf/combine/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-uxS976VVBDVxlfwaEkzX1TqMiQU=
+  /@turf/concave/5.1.5:
+    dependencies:
+      '@turf/clone': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/tin': 5.1.5
+      topojson-client: 3.1.0
+      topojson-server: 3.0.1
+    dev: false
+    resolution:
+      integrity: sha1-I7uqw4fQNLlldKG9cNBZI3qdIRA=
+  /@turf/convex/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+      concaveman: 1.2.0
+    dev: false
+    resolution:
+      integrity: sha1-Dfk3fdACIWzpghsH9wXgN9rj4B0=
+  /@turf/destination/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-7TU4G9zoO73cvQei4rzivd/7zCY=
+  /@turf/difference/5.1.5:
+    dependencies:
+      '@turf/area': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+      turf-jsts: 1.2.3
+    dev: false
+    resolution:
+      integrity: sha1-ok1pCnvKgD8QkKnuO52Qb8Q3H0I=
+  /@turf/dissolve/5.1.5:
+    dependencies:
+      '@turf/boolean-overlap': 5.1.5
+      '@turf/clone': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/line-intersect': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/union': 5.1.5
+      geojson-rbush: 2.1.0
+      get-closest: 0.0.4
+    dev: false
+    resolution:
+      integrity: sha1-LPEzqQIdIWODHD16lY1lB/nYGTg=
+  /@turf/distance/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-Oc8YIEu/h1h9cH5gmmARiQkVZAk=
+  /@turf/distance/6.0.1:
+    dependencies:
+      '@turf/helpers': 6.1.4
+      '@turf/invariant': 6.1.2
+    dev: false
+    resolution:
+      integrity: sha512-q7t7rWIWfkg7MP1Vt4uLjSEhe5rPfCO2JjpKmk7JC+QZKEQkuvHEqy3ejW1iC7Kw5ZcZNR3qdMGGz+6HnVwqvg==
+  /@turf/ellipse/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/rhumb-destination': 5.1.5
+      '@turf/transform-rotate': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-1XyrhTmFkgzeYCKKeNgEWAJcVL4=
+  /@turf/envelope/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/bbox-polygon': 5.1.5
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-UBMwnFP91D369LWIplw/7X28EIo=
+  /@turf/explode/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-sSsvd0AEobSPYrqVsgocZVo94Rg=
+  /@turf/flatten/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-2iknBnEz7WFpsLnWB7khVoiqE1g=
+  /@turf/flip/5.1.5:
+    dependencies:
+      '@turf/clone': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-Q29kOnIvDKU7n85jjkaT2zYIpoo=
+  /@turf/great-circle/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-3r+2cc5HVQnLY3MBwV/PzPo1mpM=
+  /@turf/helpers/5.1.5:
+    dev: false
+    resolution:
+      integrity: sha1-FTQFInq5M9AEpbuWQantmZ/L4M8=
+  /@turf/helpers/6.1.4:
+    dev: false
+    resolution:
+      integrity: sha512-vJvrdOZy1ngC7r3MDA7zIGSoIgyrkWcGnNIEaqn/APmw+bVLF2gAW7HIsdTxd12s5wQMqEpqIQrmrbRRZ0xC7g==
+  /@turf/hex-grid/5.1.5:
+    dependencies:
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/intersect': 5.1.6
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-m3ul/s9QUfHoWJL3E/zlxVBQKmo=
+  /@turf/interpolate/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/centroid': 5.1.5
+      '@turf/clone': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/hex-grid': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/point-grid': 5.1.5
+      '@turf/square-grid': 5.1.5
+      '@turf/triangle-grid': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-DxLwq3VtbdEK+ykMpuh3ve8BPqo=
+  /@turf/intersect/5.1.6:
+    dependencies:
+      '@turf/clean-coords': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/truncate': 5.1.5
+      turf-jsts: 1.2.3
+    dev: false
+    resolution:
+      integrity: sha512-KXyNv/GXdoGAOy03qZF53rgtXC2tNhF/4jLwTKiVRrBQH6kcEpipGStdJ+QkYIlarQPa8f7I9UlVAB19et4MfQ==
+  /@turf/invariant/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-9Z9P76CSJLFdzhZR+QPIaNV6JOE=
+  /@turf/invariant/6.1.2:
+    dependencies:
+      '@turf/helpers': 6.1.4
+    dev: false
+    resolution:
+      integrity: sha512-WU08Ph8j0J2jVGlQCKChXoCtI50BB3yEH21V++V0T4cR1T27HKCxkehV2sYMwTierfMBgjwSwDIsxnR4/2mWXg==
+  /@turf/isobands/5.1.5:
+    dependencies:
+      '@turf/area': 5.1.5
+      '@turf/bbox': 5.1.5
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/explode': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-a0TO9YTVUaMTBBh68jtKFYLj8I0=
+  /@turf/isolines/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-irTn9Cuz38VGFOW/FVln9+VdLeE=
+  /@turf/kinks/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-irtpYdm7AQchO63fLCwmQNAlaYA=
+  /@turf/length/5.1.5:
+    dependencies:
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-86X4ZMK5lqi7RxeUU1ofrxLuvvs=
+  /@turf/line-arc/5.1.5:
+    dependencies:
+      '@turf/circle': 5.1.5
+      '@turf/destination': 5.1.5
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-AHinRHg1oSrkFKIR+aZNEYYVDhU=
+  /@turf/line-chunk/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/length': 5.1.5
+      '@turf/line-slice-along': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-kQqFwFwG2dD5w4l3oF4IGNUIXEI=
+  /@turf/line-intersect/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/line-segment': 5.1.5
+      '@turf/meta': 5.1.6
+      geojson-rbush: 2.1.0
+    dev: false
+    resolution:
+      integrity: sha1-DikHGuQDKV5JFyO8SfXPrI0R3fM=
+  /@turf/line-offset/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-KrWy8In4yRPiMdmUN4553KkLWh4=
+  /@turf/line-overlap/5.1.5:
+    dependencies:
+      '@turf/boolean-point-on-line': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/line-segment': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/nearest-point-on-line': 5.1.5
+      geojson-rbush: 2.1.0
+    dev: false
+    resolution:
+      integrity: sha1-lDxvh6A4bcQ9+sEdKz/5wRLNP2A=
+  /@turf/line-segment/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-Mgeq7lRqskw9jcPMY/kcdwuAE+U=
+  /@turf/line-slice-along/5.1.5:
+    dependencies:
+      '@turf/bearing': 5.1.5
+      '@turf/destination': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-7drQoh70efKWihG9LdcomiEy6aU=
+  /@turf/line-slice/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/nearest-point-on-line': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-Hs/OFGKjeFeXVM7fRGTN4mgp8rU=
+  /@turf/line-split/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/line-intersect': 5.1.5
+      '@turf/line-segment': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/nearest-point-on-line': 5.1.5
+      '@turf/square': 5.1.5
+      '@turf/truncate': 5.1.5
+      geojson-rbush: 2.1.0
+    dev: false
+    resolution:
+      integrity: sha1-Wy30w3YZty73JbUWPPmSbVVArLc=
+  /@turf/line-to-polygon/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-ITz0Gmj4Ikd4ujnTGH3sPouBhlo=
+  /@turf/mask/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/union': 5.1.5
+      rbush: 2.0.2
+    dev: false
+    resolution:
+      integrity: sha1-mrD+8aJyyY/j70kvn/thggayQtU=
+  /@turf/meta/5.1.6:
+    dependencies:
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-wgqGPt7Qhp+yhUje6Ik0G8y0akY=
+  /@turf/meta/6.0.2:
+    dependencies:
+      '@turf/helpers': 6.1.4
+    dev: false
+    resolution:
+      integrity: sha512-VA7HJkx7qF1l3+GNGkDVn2oXy4+QoLP6LktXAaZKjuT1JI0YESat7quUkbCMy4zP9lAUuvS4YMslLyTtr919FA==
+  /@turf/midpoint/5.1.5:
+    dependencies:
+      '@turf/bearing': 5.1.5
+      '@turf/destination': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-4mH2srDqgSTM7/VSomLdRlydBfA=
+  /@turf/nearest-point-on-line/5.1.5:
+    dependencies:
+      '@turf/bearing': 5.1.5
+      '@turf/destination': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/line-intersect': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-VgauKX8VlHUkvqUaKp71HsG/nDY=
+  /@turf/nearest-point-to-line/5.1.6:
+    dependencies:
+      '@turf/helpers': 6.1.4
+      '@turf/invariant': 6.1.2
+      '@turf/meta': 6.0.2
+      '@turf/point-to-line-distance': 5.1.6
+      object-assign: 4.1.1
+    dev: false
+    resolution:
+      integrity: sha512-ZSvDIEiHhifn/vNwLXZI/E8xmEz5yBPqfUR7BVHRZrB1cP7jLhKZvkbidjG//uW8Fr1Ulc+PFOXczLspIcx/lw==
+  /@turf/nearest-point/5.1.5:
+    dependencies:
+      '@turf/clone': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-EgUN5Bw5hEMiTHl43g9iE5ANNPs=
+  /@turf/planepoint/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-GLvfAG91ne9eQsagBsn53oGyt/8=
+  /@turf/point-grid/5.1.5:
+    dependencies:
+      '@turf/boolean-within': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-MFFBJI9Quv42zn5mukuX56sjaIc=
+  /@turf/point-on-feature/5.1.5:
+    dependencies:
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/center': 5.1.5
+      '@turf/explode': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/nearest-point': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-MMfwMkMCd8ZBjZbSieRba/shP+c=
+  /@turf/point-to-line-distance/5.1.6:
+    dependencies:
+      '@turf/bearing': 6.0.1
+      '@turf/distance': 6.0.1
+      '@turf/helpers': 6.1.4
+      '@turf/invariant': 6.1.2
+      '@turf/meta': 6.0.2
+      '@turf/projection': 6.0.1
+      '@turf/rhumb-bearing': 6.0.1
+      '@turf/rhumb-distance': 6.0.1
+    dev: false
+    resolution:
+      integrity: sha512-PE3hiTeeDEi4ZLPtI8XAzFYW9nHo1EVsZGm/4ZVV8jo39d3X1oLVHxY3e1PkCmWwRapXy4QLqvnTQ7nU4wspNw==
+  /@turf/points-within-polygon/5.1.5:
+    dependencies:
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-K4VaXfOq2lfC7oIKB1SrlJKKIzc=
+  /@turf/polygon-tangents/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-K/AJkUcwJbF44lDcfLmuVAm71lI=
+  /@turf/polygon-to-line/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-I7tEjYTcTGUZmaxhGjbZHFklA2o=
+  /@turf/polygonize/5.1.5:
+    dependencies:
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/envelope': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-BJP6EYefOdELmtAs5qI+lC0IqjI=
+  /@turf/projection/5.1.5:
+    dependencies:
+      '@turf/clone': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-JFF+7rLzaBa6n3EueubWo2jt91c=
+  /@turf/projection/6.0.1:
+    dependencies:
+      '@turf/clone': 6.0.2
+      '@turf/helpers': 6.1.4
+      '@turf/meta': 6.0.2
+    dev: false
+    resolution:
+      integrity: sha512-Y3RvGT6I53MjYKLG69e9sMk45wJXcLbrEO1t6P3WQQQGqA2gYhhMJyV41vE2Z2llrJpvs2dDx/tIeQzGd0HHMQ==
+  /@turf/random/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-sy78k0Vgroulfo67UfJBw5+6Lns=
+  /@turf/rewind/5.1.5:
+    dependencies:
+      '@turf/boolean-clockwise': 5.1.5
+      '@turf/clone': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-nqPbSmi3PB/R3RH1djGxQ8/vock=
+  /@turf/rhumb-bearing/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-rPalAkJ+uMSeGM2mrg7/qwxd3NI=
+  /@turf/rhumb-bearing/6.0.1:
+    dependencies:
+      '@turf/helpers': 6.1.4
+      '@turf/invariant': 6.1.2
+    dev: false
+    resolution:
+      integrity: sha512-MVBra8OVfjM4+/N0B3o6cBIYg9p/uRKzA9uk05RfrzasEbUL1vdD23LkTooVL74Yw4UxL8BQD9hS5Re2COJFDA==
+  /@turf/rhumb-destination/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-sbKuuSFUfyrAwamUtqEw+SRjx0I=
+  /@turf/rhumb-distance/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-GAaFdiX0IlOE2tQT5p85U4/192U=
+  /@turf/rhumb-distance/6.0.1:
+    dependencies:
+      '@turf/helpers': 6.1.4
+      '@turf/invariant': 6.1.2
+    dev: false
+    resolution:
+      integrity: sha512-3G45DQtQByzzfHFPcCyJdUZFwsd45zfZ7sAb1ddF7mhEj4G70+T2G3GKjInymqDNrbyh2gbG6wQiZSToC8Uf9g==
+  /@turf/sample/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-6ctEikeJzFbuPeLdZ4HiNDQ1tBE=
+  /@turf/sector/5.1.5:
+    dependencies:
+      '@turf/circle': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/line-arc': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-rCu5TBPt1gNPb9wrZwCBNdIPXgc=
+  /@turf/shortest-path/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/bbox-polygon': 5.1.5
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/clean-coords': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/transform-scale': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-hUroCW9rw+EwD6ynfz6PZ9j5Nas=
+  /@turf/simplify/5.1.5:
+    dependencies:
+      '@turf/clean-coords': 5.1.5
+      '@turf/clone': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-Csjyei60IYGD7dmZjDJ1q+QIuSY=
+  /@turf/square-grid/5.1.5:
+    dependencies:
+      '@turf/boolean-contains': 5.1.5
+      '@turf/boolean-overlap': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/intersect': 5.1.6
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-G9X3uesU8LYLwjH+/nNR0aMvGlE=
+  /@turf/square/5.1.5:
+    dependencies:
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-qnsh5gM8ySUsOlvW89iNq9b+0YA=
+  /@turf/standard-deviational-ellipse/5.1.5:
+    dependencies:
+      '@turf/center-mean': 5.1.5
+      '@turf/ellipse': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/points-within-polygon': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-hc0oO14ayljyG9ZkEuQUtW2FIyQ=
+  /@turf/tag/5.1.5:
+    dependencies:
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/clone': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-0e4aUIjs/UoUEQGcmCOczypJfSA=
+  /@turf/tesselate/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      earcut: 2.2.2
+    dev: false
+    resolution:
+      integrity: sha1-MqWU6cIaAEIKn5DSxD3z4RZgYc0=
+  /@turf/tin/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-KCI+r8X76a6azKgc3P6l0UJMkX0=
+  /@turf/transform-rotate/5.1.5:
+    dependencies:
+      '@turf/centroid': 5.1.5
+      '@turf/clone': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/rhumb-bearing': 5.1.5
+      '@turf/rhumb-destination': 5.1.5
+      '@turf/rhumb-distance': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-0Jbt2eMA/jFQadVNjkWMQJIh7fs=
+  /@turf/transform-scale/5.1.5:
+    dependencies:
+      '@turf/bbox': 5.1.5
+      '@turf/center': 5.1.5
+      '@turf/centroid': 5.1.5
+      '@turf/clone': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/rhumb-bearing': 5.1.5
+      '@turf/rhumb-destination': 5.1.5
+      '@turf/rhumb-distance': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-cP064BhWz3uunxWtVhzf6PiQAbk=
+  /@turf/transform-translate/5.1.5:
+    dependencies:
+      '@turf/clone': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/rhumb-destination': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-Uwolf7Hccmja3Ks05nkB6yo97GM=
+  /@turf/triangle-grid/5.1.5:
+    dependencies:
+      '@turf/distance': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/intersect': 5.1.6
+      '@turf/invariant': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-ezZ2IQhVTBTyjK/zxIsc/ILI3IE=
+  /@turf/truncate/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+    dev: false
+    resolution:
+      integrity: sha1-nu37Oxi6gfLJjT6tCUMcyhiErYk=
+  /@turf/turf/5.1.6:
+    dependencies:
+      '@turf/along': 5.1.5
+      '@turf/area': 5.1.5
+      '@turf/bbox': 5.1.5
+      '@turf/bbox-clip': 5.1.5
+      '@turf/bbox-polygon': 5.1.5
+      '@turf/bearing': 5.1.5
+      '@turf/bezier-spline': 5.1.5
+      '@turf/boolean-clockwise': 5.1.5
+      '@turf/boolean-contains': 5.1.5
+      '@turf/boolean-crosses': 5.1.5
+      '@turf/boolean-disjoint': 5.1.6
+      '@turf/boolean-equal': 5.1.5
+      '@turf/boolean-overlap': 5.1.5
+      '@turf/boolean-parallel': 5.1.5
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/boolean-point-on-line': 5.1.5
+      '@turf/boolean-within': 5.1.5
+      '@turf/buffer': 5.1.5
+      '@turf/center': 5.1.5
+      '@turf/center-mean': 5.1.5
+      '@turf/center-median': 5.1.5
+      '@turf/center-of-mass': 5.1.5
+      '@turf/centroid': 5.1.5
+      '@turf/circle': 5.1.5
+      '@turf/clean-coords': 5.1.5
+      '@turf/clone': 5.1.5
+      '@turf/clusters': 5.1.5
+      '@turf/clusters-dbscan': 5.1.5
+      '@turf/clusters-kmeans': 5.1.5
+      '@turf/collect': 5.1.5
+      '@turf/combine': 5.1.5
+      '@turf/concave': 5.1.5
+      '@turf/convex': 5.1.5
+      '@turf/destination': 5.1.5
+      '@turf/difference': 5.1.5
+      '@turf/dissolve': 5.1.5
+      '@turf/distance': 5.1.5
+      '@turf/ellipse': 5.1.5
+      '@turf/envelope': 5.1.5
+      '@turf/explode': 5.1.5
+      '@turf/flatten': 5.1.5
+      '@turf/flip': 5.1.5
+      '@turf/great-circle': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/hex-grid': 5.1.5
+      '@turf/interpolate': 5.1.5
+      '@turf/intersect': 5.1.6
+      '@turf/invariant': 5.1.5
+      '@turf/isobands': 5.1.5
+      '@turf/isolines': 5.1.5
+      '@turf/kinks': 5.1.5
+      '@turf/length': 5.1.5
+      '@turf/line-arc': 5.1.5
+      '@turf/line-chunk': 5.1.5
+      '@turf/line-intersect': 5.1.5
+      '@turf/line-offset': 5.1.5
+      '@turf/line-overlap': 5.1.5
+      '@turf/line-segment': 5.1.5
+      '@turf/line-slice': 5.1.5
+      '@turf/line-slice-along': 5.1.5
+      '@turf/line-split': 5.1.5
+      '@turf/line-to-polygon': 5.1.5
+      '@turf/mask': 5.1.5
+      '@turf/meta': 5.1.6
+      '@turf/midpoint': 5.1.5
+      '@turf/nearest-point': 5.1.5
+      '@turf/nearest-point-on-line': 5.1.5
+      '@turf/nearest-point-to-line': 5.1.6
+      '@turf/planepoint': 5.1.5
+      '@turf/point-grid': 5.1.5
+      '@turf/point-on-feature': 5.1.5
+      '@turf/point-to-line-distance': 5.1.6
+      '@turf/points-within-polygon': 5.1.5
+      '@turf/polygon-tangents': 5.1.5
+      '@turf/polygon-to-line': 5.1.5
+      '@turf/polygonize': 5.1.5
+      '@turf/projection': 5.1.5
+      '@turf/random': 5.1.5
+      '@turf/rewind': 5.1.5
+      '@turf/rhumb-bearing': 5.1.5
+      '@turf/rhumb-destination': 5.1.5
+      '@turf/rhumb-distance': 5.1.5
+      '@turf/sample': 5.1.5
+      '@turf/sector': 5.1.5
+      '@turf/shortest-path': 5.1.5
+      '@turf/simplify': 5.1.5
+      '@turf/square': 5.1.5
+      '@turf/square-grid': 5.1.5
+      '@turf/standard-deviational-ellipse': 5.1.5
+      '@turf/tag': 5.1.5
+      '@turf/tesselate': 5.1.5
+      '@turf/tin': 5.1.5
+      '@turf/transform-rotate': 5.1.5
+      '@turf/transform-scale': 5.1.5
+      '@turf/transform-translate': 5.1.5
+      '@turf/triangle-grid': 5.1.5
+      '@turf/truncate': 5.1.5
+      '@turf/union': 5.1.5
+      '@turf/unkink-polygon': 5.1.5
+      '@turf/voronoi': 5.1.5
+    dev: false
+    resolution:
+      integrity: sha1-wxIlkoh+0jS3VGi4qMRb+Ib7+PY=
+  /@turf/union/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      turf-jsts: 1.2.3
+    dev: false
+    resolution:
+      integrity: sha1-UyhbYJQEf8WNlqrA6pCGXsNNRUs=
+  /@turf/unkink-polygon/5.1.5:
+    dependencies:
+      '@turf/area': 5.1.5
+      '@turf/boolean-point-in-polygon': 5.1.5
+      '@turf/helpers': 5.1.5
+      '@turf/meta': 5.1.6
+      rbush: 2.0.2
+    dev: false
+    resolution:
+      integrity: sha1-ewGEfFD7V0riV54Z5Ey6hSbSE8M=
+  /@turf/voronoi/5.1.5:
+    dependencies:
+      '@turf/helpers': 5.1.5
+      '@turf/invariant': 5.1.5
+      d3-voronoi: 1.1.2
+    dev: false
+    resolution:
+      integrity: sha1-6FbpQG3MLyXWbdyJhYTifC6/ymY=
+  /call-bind/1.0.0:
+    dependencies:
+      function-bind: 1.1.1
+      get-intrinsic: 1.0.1
+    dev: false
+    resolution:
+      integrity: sha512-AEXsYIyyDY3MCzbwdhzG3Jx1R0J2wetQyUynn6dYHAO+bg8l1k7jwZtRv4ryryFs7EP+NDlikJlVe59jr0cM2w==
+  /commander/2.20.3:
+    dev: false
+    resolution:
+      integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+  /concaveman/1.2.0:
+    dependencies:
+      point-in-polygon: 1.0.1
+      rbush: 3.0.1
+      robust-predicates: 2.0.4
+      tinyqueue: 2.0.3
+    dev: false
+    resolution:
+      integrity: sha512-OcqechF2/kubbffomKqjGEkb0ndlYhEbmyg/fxIGqdfYp5AZjD2Kl5hc97Hh3ngEuHU2314Z4KDbxL7qXGWrQQ==
+  /d3-array/1.2.4:
+    dev: false
+    resolution:
+      integrity: sha512-KHW6M86R+FUPYGb3R5XiYjXPq7VzwxZ22buHhAEVG5ztoEcZZMLov530mmccaqA1GghZArjQV46fuc8kUqhhHw==
+  /d3-dsv/2.0.0:
+    dependencies:
+      commander: 2.20.3
+      iconv-lite: 0.4.24
+      rw: 1.3.3
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-E+Pn8UJYx9mViuIUkoc93gJGGYut6mSDKy2+XaPwccwkRGlR+LO97L2VCCRjQivTwLHkSnAJG7yo00BWY6QM+w==
+  /d3-geo/1.7.1:
+    dependencies:
+      d3-array: 1.2.4
+    dev: false
+    resolution:
+      integrity: sha512-O4AempWAr+P5qbk2bC2FuN/sDW4z+dN2wDf9QV3bxQt4M5HfOEeXLgJ/UKQW0+o1Dj8BE+L5kiDbdWUMjsmQpw==
+  /d3-voronoi/1.1.2:
+    dev: false
+    resolution:
+      integrity: sha1-Fodmfo8TotFYyAwUgMWinLDYlzw=
+  /deep-equal/1.1.1:
+    dependencies:
+      is-arguments: 1.0.4
+      is-date-object: 1.0.2
+      is-regex: 1.1.1
+      object-is: 1.1.3
+      object-keys: 1.1.1
+      regexp.prototype.flags: 1.3.0
+    dev: false
+    resolution:
+      integrity: sha512-yd9c5AdiqVcR+JjcwUQb9DkhJc8ngNr0MahEBGvDiJw8puWab2yZlh+nkasOnZP+EGTAP6rRp2JzJhJZzvNF8g==
+  /define-properties/1.1.3:
+    dependencies:
+      object-keys: 1.1.1
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-3MqfYKj2lLzdMSf8ZIZE/V+Zuy+BgD6f164e8K2w7dgnpKArBDerGYpM46IYYcjnkdPNMjPk9A6VFB8+3SKlXQ==
+  /density-clustering/1.3.0:
+    dev: false
+    resolution:
+      integrity: sha1-3J9ZyPCrl+FiSsZJMP0xlIF9ysU=
+  /earcut/2.2.2:
+    dev: false
+    resolution:
+      integrity: sha512-eZoZPPJcUHnfRZ0PjLvx2qBordSiO8ofC3vt+qACLM95u+4DovnbYNpQtJh0DNsWj8RnxrQytD4WA8gj5cRIaQ==
+  /es-abstract/1.17.7:
+    dependencies:
+      es-to-primitive: 1.2.1
+      function-bind: 1.1.1
+      has: 1.0.3
+      has-symbols: 1.0.1
+      is-callable: 1.2.2
+      is-regex: 1.1.1
+      object-inspect: 1.8.0
+      object-keys: 1.1.1
+      object.assign: 4.1.2
+      string.prototype.trimend: 1.0.2
+      string.prototype.trimstart: 1.0.2
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-VBl/gnfcJ7OercKA9MVaegWsBHFjV492syMudcnQZvt/Dw8ezpcOHYZXa/J96O8vx+g4x65YKhxOwDUh63aS5g==
+  /es-abstract/1.18.0-next.1:
+    dependencies:
+      es-to-primitive: 1.2.1
+      function-bind: 1.1.1
+      has: 1.0.3
+      has-symbols: 1.0.1
+      is-callable: 1.2.2
+      is-negative-zero: 2.0.0
+      is-regex: 1.1.1
+      object-inspect: 1.8.0
+      object-keys: 1.1.1
+      object.assign: 4.1.2
+      string.prototype.trimend: 1.0.2
+      string.prototype.trimstart: 1.0.2
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-I4UGspA0wpZXWENrdA0uHbnhte683t3qT/1VFH9aX2dA5PPSf6QW5HHXf5HImaqPmjXaVeVk4RGWnaylmV7uAA==
+  /es-to-primitive/1.2.1:
+    dependencies:
+      is-callable: 1.2.2
+      is-date-object: 1.0.2
+      is-symbol: 1.0.3
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-QCOllgZJtaUo9miYBcLChTUaHNjJF3PYs1VidD7AwiEj1kYxKeQTctLAezAOH5ZKRH0g2IgPn6KwB4IT8iRpvA==
+  /function-bind/1.1.1:
+    dev: false
+    resolution:
+      integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
+  /geojson-equality/0.1.6:
+    dependencies:
+      deep-equal: 1.1.1
+    dev: false
+    resolution:
+      integrity: sha1-oXE3TvBD5dR5eZWEC65GSOB1LXI=
+  /geojson-rbush/2.1.0:
+    dependencies:
+      '@turf/helpers': 6.1.4
+      '@turf/meta': 6.0.2
+      rbush: 3.0.1
+    dev: false
+    resolution:
+      integrity: sha1-O9c745H8ELCuaT2bis6iquC4Oo0=
+  /get-closest/0.0.4:
+    dev: false
+    resolution:
+      integrity: sha1-JprHdtHmAiqg/Vht1wjop9Miaa8=
+  /get-intrinsic/1.0.1:
+    dependencies:
+      function-bind: 1.1.1
+      has: 1.0.3
+      has-symbols: 1.0.1
+    dev: false
+    resolution:
+      integrity: sha512-ZnWP+AmS1VUaLgTRy47+zKtjTxz+0xMpx3I52i+aalBK1QP19ggLF3Db89KJX7kjfOfP2eoa01qc++GwPgufPg==
+  /has-symbols/1.0.1:
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-PLcsoqu++dmEIZB+6totNFKq/7Do+Z0u4oT0zKOJNl3lYK6vGwwu2hjHs+68OEZbTjiUE9bgOABXbP/GvrS0Kg==
+  /has/1.0.3:
+    dependencies:
+      function-bind: 1.1.1
+    dev: false
+    engines:
+      node: '>= 0.4.0'
+    resolution:
+      integrity: sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==
+  /iconv-lite/0.4.24:
+    dependencies:
+      safer-buffer: 2.1.2
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==
+  /is-arguments/1.0.4:
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-xPh0Rmt8NE65sNzvyUmWgI1tz3mKq74lGA0mL8LYZcoIzKOzDh6HmrYm3d18k60nHerC8A9Km8kYu87zfSFnLA==
+  /is-callable/1.2.2:
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-dnMqspv5nU3LoewK2N/y7KLtxtakvTuaCsU9FU50/QDmdbHNy/4/JuRtMHqRU22o3q+W89YQndQEeCVwK+3qrA==
+  /is-date-object/1.0.2:
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-USlDT524woQ08aoZFzh3/Z6ch9Y/EWXEHQ/AaRN0SkKq4t2Jw2R2339tSXmwuVoY7LLlBCbOIlx2myP/L5zk0g==
+  /is-negative-zero/2.0.0:
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha1-lVOxIbD6wohp2p7UWeIMdUN4hGE=
+  /is-regex/1.1.1:
+    dependencies:
+      has-symbols: 1.0.1
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-1+QkEcxiLlB7VEyFtyBg94e08OAsvq7FUBgApTq/w2ymCLyKJgDPsybBENVtA7XCQEgEXxKPonG+mvYRxh/LIg==
+  /is-symbol/1.0.3:
+    dependencies:
+      has-symbols: 1.0.1
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-OwijhaRSgqvhm/0ZdAcXNZt9lYdKFpcRDT5ULUuYXPoT794UNOdU+gpT6Rzo7b4V2HUl/op6GqY894AZwv9faQ==
+  /lineclip/1.1.5:
+    dev: false
+    resolution:
+      integrity: sha1-K/JgZ9lDVP6r+R5CdoI221YW/RM=
+  /object-assign/4.1.1:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
+  /object-inspect/1.8.0:
+    dev: false
+    resolution:
+      integrity: sha512-jLdtEOB112fORuypAyl/50VRVIBIdVQOSUUGQHzJ4xBSbit81zRarz7GThkEFZy1RceYrWYcPcBFPQwHyAc1gA==
+  /object-is/1.1.3:
+    dependencies:
+      define-properties: 1.1.3
+      es-abstract: 1.18.0-next.1
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-teyqLvFWzLkq5B9ki8FVWA902UER2qkxmdA4nLf+wjOLAWgxzCWZNCxpDq9MvE8MmhWNr+I8w3BN49Vx36Y6Xg==
+  /object-keys/1.1.1:
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
+  /object.assign/4.1.2:
+    dependencies:
+      call-bind: 1.0.0
+      define-properties: 1.1.3
+      has-symbols: 1.0.1
+      object-keys: 1.1.1
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-ixT2L5THXsApyiUPYKmW+2EHpXXe5Ii3M+f4e+aJFAHao5amFRW6J0OO6c/LU8Be47utCx2GL89hxGB6XSmKuQ==
+  /point-in-polygon/1.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-1Ztk6P7kHElFiqyCtWcYxZV7Kvc=
+  /quickselect/1.1.1:
+    dev: false
+    resolution:
+      integrity: sha512-qN0Gqdw4c4KGPsBOQafj6yj/PA6c/L63f6CaZ/DCF/xF4Esu3jVmKLUDYxghFx8Kb/O7y9tI7x2RjTSXwdK1iQ==
+  /quickselect/2.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-RKJ22hX8mHe3Y6wH/N3wCM6BWtjaxIyyUIkpHOvfFnxdI4yD4tBXEBKSbriGujF6jnSVkJrffuo6vxACiSSxIw==
+  /rbush/2.0.2:
+    dependencies:
+      quickselect: 1.1.1
+    dev: false
+    resolution:
+      integrity: sha512-XBOuALcTm+O/H8G90b6pzu6nX6v2zCKiFG4BJho8a+bY6AER6t8uQUZdi5bomQc0AprCWhEGa7ncAbbRap0bRA==
+  /rbush/3.0.1:
+    dependencies:
+      quickselect: 2.0.0
+    dev: false
+    resolution:
+      integrity: sha512-XRaVO0YecOpEuIvbhbpTrZgoiI6xBlz6hnlr6EHhd+0x9ase6EmeN+hdwwUaJvLcsFFQ8iWVF1GAK1yB0BWi0w==
+  /regexp.prototype.flags/1.3.0:
+    dependencies:
+      define-properties: 1.1.3
+      es-abstract: 1.17.7
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-2+Q0C5g951OlYlJz6yu5/M33IcsESLlLfsyIaLJaG4FA2r4yP8MvVMJUUP/fVBkSpbbbZlS5gynbEWLipiiXiQ==
+  /robust-predicates/2.0.4:
+    dev: false
+    resolution:
+      integrity: sha512-l4NwboJM74Ilm4VKfbAtFeGq7aEjWL+5kVFcmgFA2MrdnQWx9iE/tUGvxY5HyMI7o/WpSIUFLbC5fbeaHgSCYg==
+  /rw/1.3.3:
+    dev: false
+    resolution:
+      integrity: sha1-P4Yt+pGrdmsUiF700BEkv9oHT7Q=
+  /safer-buffer/2.1.2:
+    dev: false
+    resolution:
+      integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
+  /skmeans/0.9.7:
+    dev: false
+    resolution:
+      integrity: sha512-hNj1/oZ7ygsfmPZ7ZfN5MUBRoGg1gtpnImuJBgLO0ljQ67DtJuiQaiYdS4lUA6s0KCwnPhGivtC/WRwIZLkHyg==
+  /string.prototype.trimend/1.0.2:
+    dependencies:
+      define-properties: 1.1.3
+      es-abstract: 1.18.0-next.1
+    dev: false
+    resolution:
+      integrity: sha512-8oAG/hi14Z4nOVP0z6mdiVZ/wqjDtWSLygMigTzAb+7aPEDTleeFf+WrF+alzecxIRkckkJVn+dTlwzJXORATw==
+  /string.prototype.trimstart/1.0.2:
+    dependencies:
+      define-properties: 1.1.3
+      es-abstract: 1.18.0-next.1
+    dev: false
+    resolution:
+      integrity: sha512-7F6CdBTl5zyu30BJFdzSTlSlLPwODC23Od+iLoVH8X6+3fvDPPuBVVj9iaB1GOsSTSIgVfsfm27R2FGrAPznWg==
+  /tinyqueue/2.0.3:
+    dev: false
+    resolution:
+      integrity: sha512-ppJZNDuKGgxzkHihX8v9v9G5f+18gzaTfrukGrq6ueg0lmH4nqVnA2IPG0AEH3jKEk2GRJCUhDoqpoiw3PHLBA==
+  /topojson-client/3.1.0:
+    dependencies:
+      commander: 2.20.3
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-605uxS6bcYxGXw9qi62XyrV6Q3xwbndjachmNxu8HWTtVPxZfEJN9fd/SZS1Q54Sn2y0TMyMxFj/cJINqGHrKw==
+  /topojson-server/3.0.1:
+    dependencies:
+      commander: 2.20.3
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-/VS9j/ffKr2XAOjlZ9CgyyeLmgJ9dMwq6Y0YEON8O7p/tGGk+dCWnrE03zEdu7i4L7YsFZLEPZPzCvcB7lEEXw==
+  /turf-jsts/1.2.3:
+    dev: false
+    resolution:
+      integrity: sha512-Ja03QIJlPuHt4IQ2FfGex4F4JAr8m3jpaHbFbQrgwr7s7L6U8ocrHiF3J1+wf9jzhGKxvDeaCAnGDot8OjGFyA==
+specifiers:
+  '@turf/turf': ^5.1.6
+  d3-dsv: ^2.0.0
+  topojson-client: ^3.1.0
+  topojson-server: ^3.0.1

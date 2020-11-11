@@ -1,0 +1,10 @@
+{
+    "extends": "@snowpack/app-scripts-svelte",
+    "scripts": {},
+    "plugins": [
+        "@snowpack/plugin-postcss"
+    ],
+    "mount": {
+        "../data": "/data"
+    }
+  }
