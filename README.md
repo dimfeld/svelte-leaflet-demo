@@ -6,7 +6,7 @@ This repository contains two versions of the application. The `full` directory i
 finished product, while the `skeleton` directory just contains a basic shell, which I
 fill in during the presentation to build into the complete app.
 
-Developed for a presentation to JavascriptLA on November 11, 2020.
+Developed for a [presentation to JavascriptLA](https://www.youtube.com/watch?v=-klB-EocorE&t=770s) on November 11, 2020.
 
 
 
