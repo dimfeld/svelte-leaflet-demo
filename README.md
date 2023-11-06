@@ -16,7 +16,7 @@ Developed for a [presentation to JavascriptLA](https://www.youtube.com/watch?v=-
 
 ### Concepts
 
-* [Metropolitan Statistcal Areas (US Census)](https://www.census.gov/topics/housing/housing-patterns/about/core-based-statistical-areas.html)
+* [Metropolitan Statistical Areas (US Census)](https://www.census.gov/topics/housing/housing-patterns/about/core-based-statistical-areas.html)
 * [Wikipedia on MSAs](https://en.wikipedia.org/wiki/Metropolitan_statistical_area)
 * [Creating Consistently Curved Lines in Leaflet](https://medium.com/@ryancatalani/creating-consistently-curved-lines-on-leaflet-b59bc03fa9dc)
 * [geojson.io](https://geojson.io) for playing with GeoJSON.
